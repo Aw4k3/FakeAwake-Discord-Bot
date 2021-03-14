@@ -1,0 +1,32 @@
+{
+  "Version 1.0.0": {
+    "Added": [
+      "[Command] help",
+      "[Command] bs maplink",
+      "[Command] about",
+      "[Command] randnum",
+      "[Command] awake",
+      "[Command] ping",
+      "[Command] bark",
+      "[Command] roll",
+      "[Command] howgay",
+      "[Command] howhorny",
+      "[Command] ratemypp",
+      "[Command] trap",
+      "[Command] bonk"
+    ],
+    "Removed": [],
+    "Changed": []
+  },
+  "Version 1.0.1": {
+    "Added": [
+      "[Command] uwufy",
+      "[Command] weewoo",
+      "[Admin] Crash Handler"
+    ],
+    "Removed": [],
+    "Changed": [
+      "[Command] Ping command returns latency to bot rather then just saying \"Pong!\""
+    ]
+  }
+}

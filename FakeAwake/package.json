@@ -1,0 +1,9 @@
+{
+  "name": "fake-awake",
+  "version": "1.0.0",
+  "description": "FakeAwake",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
