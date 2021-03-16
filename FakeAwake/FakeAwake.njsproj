@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Assets\Data\HornyJail.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Images\Arrows.png" />
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
@@ -46,6 +49,7 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Assets\Images\" />
+    <Folder Include="Assets\Data\" />
     <Folder Include="Assets\temp\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

@@ -18,14 +18,17 @@
     "Removed": [],
     "Changed": []
   },
-  "Version 1.0.1": {
+  "Version 1.1.0": {
     "Added": [
       "[Command] uwufy",
       "[Command] weewoo",
+      "[Command] sm (string manipulation)",
+      "[Command] me",
       "[Admin] Crash Handler"
     ],
     "Removed": [],
     "Changed": [
+      "[Command] howhorny now has a trial flag",
       "[Command] Ping command returns latency to bot rather then just saying \"Pong!\""
     ]
   }
