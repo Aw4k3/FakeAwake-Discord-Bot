@@ -30,26 +30,99 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Assets\Commands\Beat Saber\maplink.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\awake.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\bark.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\bonk.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\hornylog.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\howdrunk.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\howgay.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\howhorny.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\love.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\ratemypp.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\roll.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\trap.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\weewoo.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\help.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\about.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\changelog.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\ping.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\randnum.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\StringManipulation.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Data\HornyJail.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Images\Arrows.png" />
+    <Content Include="Assets\Images\LoveIcon.png" />
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
     <Content Include="Assets\Images\PinkJailCell.png" />
+    <Content Include="Assets\include\status.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\random.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\webclient.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="ChangeLog.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Images\awakeGasm.png" />
     <Content Include="Assets\Images\GachiBallPride.png" />
     <Content Include="Assets\Images\Logo.png" />
+    <Content Include="muted.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Assets\Commands\Fun\" />
+    <Folder Include="Assets\Commands\Beat Saber\" />
+    <Folder Include="Assets\Commands\Utility\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Data\" />
+    <Folder Include="Assets\Commands\" />
+    <Folder Include="Assets\include\" />
     <Folder Include="Assets\temp\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

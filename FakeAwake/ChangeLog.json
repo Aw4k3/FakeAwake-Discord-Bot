@@ -1,5 +1,5 @@
 {
-  "Version 1.0.0": {
+  "1.0.0": {
     "Added": [
       "[Command] help",
       "[Command] bs maplink",
@@ -18,7 +18,7 @@
     "Removed": [],
     "Changed": []
   },
-  "Version 1.1.0": {
+  "1.1.0": {
     "Added": [
       "[Command] uwufy",
       "[Command] weewoo",
@@ -30,6 +30,17 @@
     "Changed": [
       "[Command] howhorny now has a trial flag",
       "[Command] Ping command returns latency to bot rather then just saying \"Pong!\""
+    ]
+  },
+  "2.0.0": {
+    "Added": [
+      "[Command] love"
+    ],
+    "Removed": [],
+    "Changed": [
+      "[Bot] File System has been redone",
+      "[Command] Uwufy has been moved into String Manipulation as an available flag",
+      "[Command] Added more traps to the .trap command"
     ]
   }
 }
