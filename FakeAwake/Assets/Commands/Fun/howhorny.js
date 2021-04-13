@@ -2,17 +2,21 @@ const Discord = require('discord.js');
 const Status = require('../../include/status.js');
 const Random = require('../../include/random.js');
 const WeeWoo = require('./weewoo.js');
-const FileStream = require('fs');
+const FileSystem = require('fs');
 
 module.exports = {
     name: 'howhorny',
     description: 'You ever just wanted to know how horny someone is?',
     execute(msg, args) {
         var HornyRating = 0;
+        var UpperLimit = 101;
         if (msg.mentions.members.size) {
+            if (msg.content.includes('-overload')) {
+                UpperLimit = Number.MAX_SAFE_INTEGER;
+            }
             msg.mentions.members.forEach(user => {
                 //Log User
-                var JObject = JSON.parse(FileStream.readFileSync('./Assets/Data/HornyJail.json', 'utf8'));
+                var JObject = JSON.parse(FileSystem.readFileSync('./Assets/Data/HornyJail.json', 'utf8'));
                 //console.log(JObject);
                 if (!JObject['Inmates'].hasOwnProperty(user.user.username)) {
                     JObject['Inmates'][user.user.username] = 1;
@@ -22,7 +26,7 @@ module.exports = {
                 }
 
                 //Rating
-                HornyRating = Random.RandInt(0, 101);
+                HornyRating = Random.RandInt(0, UpperLimit);
                 msg.channel.send(new Discord.MessageEmbed()
                     .setTitle('Horny Check')
                     .setColor('#ff00c3')

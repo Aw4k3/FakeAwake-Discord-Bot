@@ -6,11 +6,7 @@ module.exports = {
     description: 'bonk',
     execute(msg, args) {
         if (msg.mentions.users.size) {
-            msg.mentions.users.forEach(
-                user => {
-                    msg.channel.send(user.tag + ' was bonked by ' + msg.author.tag);
-                }
-            );
+            msg.mentions.users.forEach(user => { msg.channel.send(user.user + ' was bonked by ' + msg.author.member); });
         } else {
             msg.channel.send(new Discord.MessageEmbed()
                 .setTitle('Usage')

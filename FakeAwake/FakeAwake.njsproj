@@ -33,6 +33,9 @@
     <Content Include="Assets\Commands\Beat Saber\maplink.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\8ball.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\awake.js">
       <SubType>Code</SubType>
     </Content>
@@ -40,6 +43,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\bonk.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\hate.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\hornylog.js">
@@ -54,6 +60,15 @@
     <Content Include="Assets\Commands\Fun\howhorny.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\me.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\sanity.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\leds.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\love.js">
       <SubType>Code</SubType>
     </Content>
@@ -66,16 +81,28 @@
     <Content Include="Assets\Commands\Fun\trap.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\waifu.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\weewoo.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\help.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\ImageTools\edit.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\ImageTools\newSolid.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Utility\about.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Utility\changelog.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Utility\math.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Utility\ping.js">
@@ -91,6 +118,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Images\Arrows.png" />
+    <Content Include="Assets\Images\CalculatorIcon.png" />
     <Content Include="Assets\Images\LoveIcon.png" />
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
@@ -101,6 +129,7 @@
     <Content Include="Assets\include\random.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\include\utils.js" />
     <Content Include="Assets\include\webclient.js">
       <SubType>Code</SubType>
     </Content>
@@ -118,6 +147,7 @@
     <Folder Include="Assets\" />
     <Folder Include="Assets\Commands\Fun\" />
     <Folder Include="Assets\Commands\Beat Saber\" />
+    <Folder Include="Assets\Commands\ImageTools\" />
     <Folder Include="Assets\Commands\Utility\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Data\" />

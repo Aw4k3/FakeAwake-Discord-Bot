@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
-const FileStream = require('fs');
+const FileSystem = require('fs');
 
 module.exports = {
     name: 'hornylog',
     description: 'Lists all the idots who managed to get themselves into horny jail. Smh.',
     execute(msg, args) {
         console.log('[File System] Reading ./Assets/Data/HornyJail.json');
-        var JObject = JSON.parse(FileStream.readFileSync('./Assets/Data/HornyJail.json', 'utf8'));
+        var JObject = JSON.parse(FileSystem.readFileSync('./Assets/Data/HornyJail.json', 'utf8'));
         var HornyJailList = new Discord.MessageEmbed()
             .setTitle('Horny Jail')
             .setDescription('Look at all those hornies. Kappa')

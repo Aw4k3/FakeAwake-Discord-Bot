@@ -20,24 +20,31 @@ module.exports = {
             .setTitle(HelpTitles[Random.RandInt(0, 4)])
             .setColor(Status.StatusColor('OK'))
             .addFields(
-                //Beat Saber
+                // Beat Saber
                 { name: 'bs maplink', value: 'Gets beat saver link for the map of specified ID.' },
 
-                //Fun
+                // Fun
+                { name: '8ball', value: '8Ball say...' },
                 { name: 'awake', value: 'Get links to Awake\'s stuff (no only fans tho :sadge:).' },
                 { name: 'bark', value: 'Woof!' },
                 { name: 'bonk', value: 'Bonks the specified user(s).' },
+                { name: 'hate', value: 'Returns how much you hate something.' },
                 { name: 'hornylog', value: 'Lists all the people sent who have been sent to horny jail.' },
+                { name: 'howdrunk', value: 'Check how much percent drunk someone is.' },
                 { name: 'howgay', value: 'Check how much percent gay someone is.' },
                 { name: 'howhorny', value: 'Check how much percent horny someone is.' },
                 { name: 'love', value: 'Loveometer.' },
                 { name: 'ratemypp', value: 'Rate someone\' PP.' },
                 { name: 'roll', value: 'Returns a random number between 0 ~ 100' },
+                { name: 'sanity', value: 'Returns how sane someone is.' },
                 { name: 'trap', value: 'Felix says Hi!' },
                 { name: 'weewoo', value: 'Send mentioned users to horny jail.' },
 
-                //Utilites
+                // Image Tools
+
+                // Utilites
                 { name: 'about', value: 'Bot infos.' },
+                { name: 'math', value: 'Caclulator for your smooth brain.' },
                 { name: 'randnum', value: 'Generate a random int between a specified range.' },
                 { name: 'ping', value: 'You get ponged.' },
                 { name: 'sm', value: 'Provides string manipulation utilities.' }

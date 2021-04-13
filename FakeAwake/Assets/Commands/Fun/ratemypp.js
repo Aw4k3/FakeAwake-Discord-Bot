@@ -23,7 +23,7 @@ module.exports = {
                 .setColor(Status.StatusColor('ERROR'))
                 .addFields(
                     { name: 'Bracket Definitions', value: '{Required} [optional]' },
-                    { name: prefix + 'ratemypp  {@username} [@username2] [@username3]...', value: 'How good is your PP.' }
+                    { name: 'ratemypp  {@username} [@username2] [@username3]...', value: 'How good is your PP.' }
                 )
                 .setFooter(Status.InvalidCommandMessage())
             );

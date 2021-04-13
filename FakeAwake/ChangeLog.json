@@ -34,13 +34,51 @@
   },
   "2.0.0": {
     "Added": [
-      "[Command] love"
+      "[Command] love",
+      "[Command] howdrunk"
     ],
     "Removed": [],
     "Changed": [
-      "[Bot] File System has been redone",
+      "[Bot] File System and Command Handler has been redone",
       "[Command] Uwufy has been moved into String Manipulation as an available flag",
       "[Command] Added more traps to the .trap command"
     ]
+  },
+  "2.0.1": {
+    "Added": [
+      "[Command] hate"
+    ],
+    "Removed": [],
+    "Changed": [
+      "[Command] Love command now has a -overload flag just like the hate command"
+    ]
+  },
+  "2.0.2": {
+    "Added": [
+      "[Command] sanity"
+    ],
+    "Removed": [],
+    "Changed": []
+  },
+  "2.0.3": {
+    "Added": [],
+    "Removed": [],
+    "Changed": [
+      "[Bot] Using Chroma-js to manage colors instead of THREE"
+    ]
+  },
+  "2.0.4": {
+    "Added": [
+      "[Command] 8Ball"
+    ],
+    "Removed": [],
+    "Changed": []
+  },
+  "2.0.5": {
+    "Added": [
+      "[Command] waifu"
+    ],
+    "Removed": [],
+    "Changed": []
   }
 }

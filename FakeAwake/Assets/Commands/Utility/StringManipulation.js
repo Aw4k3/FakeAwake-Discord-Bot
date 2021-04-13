@@ -28,9 +28,11 @@ module.exports = {
 
             var StringResult = temp.trim().split('');
 
-            for (var i = 0; i < StringResult.length; i++) {
-                if (StringResult[i] === 'l' || StringResult[i] === 'r') {
-                    StringResult[i] = 'w';
+            if (uwufy) {
+                for (var i = 0; i < StringResult.length; i++) { // Uwufy
+                    if (StringResult[i] === 'l' || StringResult[i] === 'r') {
+                        StringResult[i] = 'w';
+                    }
                 }
             }
 
