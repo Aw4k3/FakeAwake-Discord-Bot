@@ -161,6 +161,13 @@ module.exports = {
                         });
                         break;
 
+                    case '-mio':
+                        NekoEmbed.setDescription('Just for Jk');
+                        NekoEmbed.attachFiles(['./Assets/Images/mio.gif'])
+                        NekoEmbed.setImage('attachment://mio.gif');
+                        msg.channel.send(NekoEmbed);
+                        break;
+
                     case '-neko':
                         NekoClient.sfw.neko().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);

@@ -1,0 +1,88 @@
+{
+  "Big Man Boris": {
+    "Name": "Big Man Boris",
+    "Age": 56,
+    "Health": 420,
+    "Moves": {
+      "Taxes": 40,
+      "Britain": 65,
+      "Bus Stop": 80,
+      "Boris Bop": 90
+    },
+    "Abilities": {
+      "Healing": {
+        "Tesco's Meal Deal": 160,
+        "TFL Health Kit": 280
+      },
+      "DamageBuffs": {
+        "Central London": 1.25,
+        "London Eye": 1.5
+      }
+    }
+  },
+  "Billy Herrington": {
+    "Name": "BillyPosingWithHisCuteWaifus",
+    "Age": 48,
+    "Health": 1000,
+    "Moves": {
+      "Pog Fap": 30,
+      "Hot": 50,
+      "Posing": 60,
+      "Waifus": 140
+    },
+    "Abilities": {
+      "Healing": {
+        "Waifu's Kiss": 220,
+        "Billy's Brain": 380
+      },
+      "DamageBuffs": {
+        "Wet Dreams": 1.17,
+        "Asuna is Hot": 1.69
+      }
+    }
+  },
+  "Camellia": {
+    "Name": "Camellia",
+    "Age": 28,
+    "Health": 1250,
+    "Moves": {
+      "Bass": 75,
+      "Vocaloid": 110,
+      "Reaper": 145,
+      "PepeJAMJAM": 180
+    },
+    "Abilities": {
+      "Healing": {
+        "Sausage Fattener": 450,
+        "KiloHeart's Phaseplant": 800
+      },
+      "DamageBuffs": {
+        "Lowermost Revolt": 1.55,
+        "Spin Eternally": 2.25
+      }
+    }
+  },
+  "Battle Mors": {
+    "Name": "Battle Mors",
+    "Age": 24,
+    "Health": 850,
+    "Moves": {
+      "Smooth Slap": 55,
+      "Free Roaming Roomba": 85,
+      "Dab of Derp": 125,
+      "The Vibrator from Yakuza": 150
+    },
+    "Abilities": {
+      "Healing": {
+        "Old Vibes": 300,
+        "Majima Simp": 550,
+        "Restore the Stupid": 850
+      },
+      "DamageBuffs": {
+        "Timeout": 1.33,
+        "Starting Soon": 1.45,
+        "Camera+": 2.0
+      }
+    }
+  }
+}

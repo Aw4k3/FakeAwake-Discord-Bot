@@ -30,7 +30,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Assets\Commands\AI and ML\Playground.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\AI and ML\submitstroke.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Beat Saber\maplink.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\69.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\8ball.js">
@@ -42,7 +51,13 @@
     <Content Include="Assets\Commands\Fun\bark.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\BattleMiniGame.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\bonk.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\bubblewrap.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\hate.js">
@@ -64,9 +79,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\sanity.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Assets\Commands\Fun\leds.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\love.js">
@@ -114,12 +126,27 @@
     <Content Include="Assets\Commands\Utility\StringManipulation.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Data\AI and ML\Playground.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\AI and ML\PlaygroundTrained.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\Battle\Characters.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\Battle\PlayerStats.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Data\HornyJail.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Images\Arrows.png" />
+    <Content Include="Assets\Images\BattleIcon.png" />
+    <Content Include="Assets\Images\Battle\DS3_Darkeater_Midir_Boss_Arena.png" />
     <Content Include="Assets\Images\CalculatorIcon.png" />
     <Content Include="Assets\Images\LoveIcon.png" />
+    <Content Include="Assets\Images\mio.gif" />
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
     <Content Include="Assets\Images\PinkJailCell.png" />
@@ -148,10 +175,14 @@
     <Folder Include="Assets\Commands\Fun\" />
     <Folder Include="Assets\Commands\Beat Saber\" />
     <Folder Include="Assets\Commands\ImageTools\" />
+    <Folder Include="Assets\Commands\AI and ML\" />
     <Folder Include="Assets\Commands\Utility\" />
+    <Folder Include="Assets\Data\AI and ML\" />
+    <Folder Include="Assets\Data\Battle\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Data\" />
     <Folder Include="Assets\Commands\" />
+    <Folder Include="Assets\Images\Battle\" />
     <Folder Include="Assets\include\" />
     <Folder Include="Assets\temp\" />
   </ItemGroup>

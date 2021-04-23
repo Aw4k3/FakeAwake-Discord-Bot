@@ -1,11 +1,16 @@
 const Discord = require('discord.js');
 const FileSystem = require('fs');
 const Sharp = require('sharp');
-const SerialPort = require('serialport');
 const Status = require('./Assets/include/status.js');
 const Utils = require('./Assets/include/utils.js');
 const readline = require('readline');
-const { error } = require('console');
+
+var Nyanners = JSON.parse('{"attackingmoves":{"Bite":[15,"Nyanners jumps out, surprising you, and sinks her one tooth into your skin"],"Scratch":[20,"Nyanners digs her claws into your skin"],"Punch Burst":[25,"Nyanners unleashes her power in a quick succession of powerful punches"],"Chest Bump":[20,"Nyanners rams herself against you, with all her force. Sadly it is not accompanied by a soft smack"]},"staticmoves":{"Screech":["Confusion","Nyanners unleashes a demonic screech which confuses you"],"Degradation":["Horniness","Nyanners insults you ;)"],"Joke":["Horniness","Nyanners increases your arousal with a sexy joke"],"Waifu Call":["Support","Nyanners calls for her Senpais and gains big pp energy"],"Lick":["Confusion","Nyanners suddenly jumps out and licks your cheeck living you in shock"]}}');
+
+const a = Nyanners[Object.keys(Nyanners)[0]];
+const b = Nyanners[Object.keys(Nyanners)[1]];
+
+console.log(a[Object.keys(a)[0]][0]);
 
 const DateTime = new Date();
 const StartTime = DateTime.getTime();
@@ -66,6 +71,9 @@ var IsFirstMessage = true;
 var LastMessage;
 //const serialPort = new SerialPort('COM8', {baudRate: 115200});
 
+/**************************** Init AI ****************************/
+
+
 /**************************** Client Handler ****************************/
 const Colors = [
     '#ff0000', // Red
@@ -91,19 +99,19 @@ client.on('ready', () => {
     console.log(`${Utils.getTimeStamp()}Loaded in ${(new Date().getTime() - StartTime) / 1000} seconds!`);
     console.log(`${Utils.getTimeStamp()}Logged in as ${client.user.tag}!`);
 
-    var colorIdx = 0;
-    setInterval(() => {
-        /* Serenity's Server */
-        client.guilds.cache.find(DiscordServer => DiscordServer.id === '713939972020764733').roles.cache.find(ServerRoles => ServerRoles.id === '831284413337305099').setColor(Colors[colorIdx]);
-        client.guilds.cache.find(DiscordServer => DiscordServer.id === '713939972020764733').roles.cache.find(ServerRoles => ServerRoles.id === '734923766605414490').setColor(Colors[colorIdx]);
+    //var colorIdx = 0;
+    //setInterval(() => {
+    //    /* Serenity's Server */
+    //    client.guilds.cache.find(DiscordServer => DiscordServer.id === '713939972020764733').roles.cache.find(ServerRoles => ServerRoles.id === '831284413337305099').setColor(Colors[colorIdx]);
+    //    client.guilds.cache.find(DiscordServer => DiscordServer.id === '713939972020764733').roles.cache.find(ServerRoles => ServerRoles.id === '734923766605414490').setColor(Colors[colorIdx]);
 
-        /* Bot Testing Server */
-        client.guilds.cache.find(DiscordServer => DiscordServer.id === '436914784676610078').roles.cache.find(ServerRoles => ServerRoles.id === '829130682261438496').setColor(Colors[colorIdx]);
-        //console.log('color changed');
+    //    /* Bot Testing Server */
+    //    client.guilds.cache.find(DiscordServer => DiscordServer.id === '436914784676610078').roles.cache.find(ServerRoles => ServerRoles.id === '829130682261438496').setColor(Colors[colorIdx]);
+    //    //console.log('color changed');
 
-        /* Increment color index */
-        if (colorIdx++ === Colors.length) { colorIdx = 0; }
-    }, 10000);
+    //    /* Increment color index */
+    //    if (colorIdx++ === Colors.length) { colorIdx = 0; }
+    //}, 10000);
 });
 
 client.on('message', msg => {
@@ -140,9 +148,9 @@ client.on('message', msg => {
 
     /* Execution */
     switch (args[0]) {
-        default:
+        /*default:
             msg.reply(`"${msg.content}" is not a command. Type ".help" for a list of commands.`);
-            break;
+            break;*/
 
     /******************* Help Command *******************/
         case 'help':
@@ -170,6 +178,10 @@ client.on('message', msg => {
             break;
 
     /******************* Fun Commands *******************/
+        case "69":
+            if (client.commands.get('69').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('69').name}"`); }
+            break;
+
         case "8ball":
             if (client.commands.get('8ball').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('8ball').name}"`); }
             break;
@@ -182,12 +194,20 @@ client.on('message', msg => {
             if (client.commands.get('bark').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bark').name}"`); }
             break;
 
+        case 'battle':
+            if (client.commands.get('BattleMiniGame').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('BattleMiniGame').name}"`); }
+            break;
+
         case 'bonk':
             if (client.commands.get('bonk').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bonk').name}"`); }
             break;
 
         case 'bork':
             if (client.commands.get('bork').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bork').name}"`); }
+            break;
+
+        case 'bubblewrap':
+            if (client.commands.get('bubblewrap').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bubblewrap').name}"`); }
             break;
 
         case 'hate':
@@ -266,6 +286,7 @@ client.on('message', msg => {
                     break;
             }
             break;
+
     /******************* Utility Commands *******************/
         case 'about':
             if (client.commands.get('about').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('about').name}"`); }
@@ -285,6 +306,10 @@ client.on('message', msg => {
                 ));
             break;
 
+        case 'math':
+            if (client.commands.get('math').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('math').name}"`); }
+            break;
+
         case 'ping':
             //client.guilds.cache.array
             if (client.commands.get('ping').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('ping').name}"`); }
@@ -299,24 +324,31 @@ client.on('message', msg => {
             break
 
     /******************* Just Testing Stuff *******************/
-        case 'math':
-            if (client.commands.get('math').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('math').name}"`); }
+        case 'ai':
+            if (client.commands.get('testAI').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('testAI').name}"`); }
             break;
 
-        /*case 'leds':
-            if (client.commands.get('leds').execute(msg, args, serialPort)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('leds').name}"`); }
-            break;*/
+        case 'submitstroke':
+            if (client.commands.get('submitstroke').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('submitstroke').name}"`); }
+            break;
     }
 
     //Test code hints
-    
-});
+    //msg.channel.awaitMessages()
+    /*
+    msg.channel.awaitMessages(m => m.content.length > 0, { max: 1, time: 30000, errors: ['time'] }).then(newmsg => {
+        switch (newmsg.first().content) {
+            case 'kk':
+                msg.reply('no u');
+                break;
 
-/*
-client.on('guildMemberAdd', newMember => {
-    new Discord.Message.channel.send(`Look at this fucker called ${newMember.user}`);
-})
-*/
+            case 'oo':
+                msg.reply('pee pee poo poo');
+                break;
+        }
+    });
+    */
+});
 
 client.login(Token);
 

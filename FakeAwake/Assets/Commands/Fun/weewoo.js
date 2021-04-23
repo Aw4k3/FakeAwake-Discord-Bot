@@ -16,6 +16,8 @@ module.exports = {
     execute(msg, args) {
         for (var i = 0; i < args.length; i++) {
             switch (args[i]) {
+                // This was just never finished
+                // and will probably never be finished
                 case '-rgb':
                     var R = parseInt(args[i + 1]) || false,
                         G = parseInt(args[i + 2]) || false,

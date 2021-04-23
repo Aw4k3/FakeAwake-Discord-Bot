@@ -1,0 +1,26 @@
+{
+  "0": {
+    "Name": "template",
+    "Level": 1,
+    "XP": 0,
+    "Wins": 0,
+    "Loss": 0,
+    "Character Stats": {
+      "Boris": {
+        "Play Count": 0,
+        "Wins": 0,
+        "Loss": 0
+      },
+      "Billy": {
+        "Play Count": 0,
+        "Wins": 0,
+        "Loss": 0
+      },
+      "Camellia": {
+        "Play Count": 0,
+        "Wins": 0,
+        "Loss": 0
+      }
+    }
+  }
+}
