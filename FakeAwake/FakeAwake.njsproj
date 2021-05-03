@@ -60,6 +60,9 @@
     <Content Include="Assets\Commands\Fun\bubblewrap.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\EatTheThing.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\hate.js">
       <SubType>Code</SubType>
     </Content>
@@ -114,6 +117,12 @@
     <Content Include="Assets\Commands\Utility\changelog.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\include\asciiRenderEngine.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\emoteGraphicsEngine.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Utility\math.js">
       <SubType>Code</SubType>
     </Content>
@@ -150,6 +159,7 @@
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
     <Content Include="Assets\Images\PinkJailCell.png" />
+    <Content Include="Assets\Images\SadPepeCatBonk.gif" />
     <Content Include="Assets\include\status.js">
       <SubType>Code</SubType>
     </Content>

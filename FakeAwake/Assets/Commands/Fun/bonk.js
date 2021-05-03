@@ -6,7 +6,12 @@ module.exports = {
     description: 'bonk',
     execute(msg, args) {
         if (msg.mentions.users.size) {
-            msg.mentions.users.forEach(user => { msg.channel.send(user.user + ' was bonked by ' + msg.author.member); });
+            msg.channel.send(new Discord.MessageEmbed()
+                .setTitle('Bonk')
+                .attachFiles(['./Assets/Images/SadPepeCatBonk.gif'])
+                .setThumbnail('attachment://SadPepeCatBonk.gif')
+                .addField('Bonked', msg.mentions.users.array().join())
+                .setFooter(`Bonked by ${msg.author.tag}`));
         } else {
             msg.channel.send(new Discord.MessageEmbed()
                 .setTitle('Usage')

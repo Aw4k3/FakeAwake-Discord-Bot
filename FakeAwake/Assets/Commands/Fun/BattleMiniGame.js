@@ -185,6 +185,11 @@ function DisplayCharacters(jObject) {
 
 async function InBattle_Handler(msg, PlayerName, Player, Enemy) {
     var DoOnceState = true;
+    var MoveListView = []
+
+    for (var i = 0; i < Object.keys(Player.Moves).length; i++) {
+        MoveListView.push(`${Object.keys(Player.Moves)[i]}: ${Player.Moves[Object.keys(Player.Moves)[i]]}\n`); // Add moves to array
+    }
     
     while (inBattle) {
         if (DoOnceState) {
@@ -194,7 +199,7 @@ async function InBattle_Handler(msg, PlayerName, Player, Enemy) {
                 .addFields(
                     { name: PlayerName, value: `As ${Player.Name}\nHealth: ${Player.Health}`, inline: true },
                     { name: 'AI', value: `As ${Enemy.Name}\nHealth: ${Enemy.Health}`, inline: true },
-                    { name: 'Available Moves', value: `**Moves**\n${Player.Moves.join()}` }
+                    { name: 'Available Moves', value: `**Moves**\n${MoveListView.join('')}` }
                 )
                 .setFooter('Battle')
             );
@@ -202,6 +207,16 @@ async function InBattle_Handler(msg, PlayerName, Player, Enemy) {
             DoOnceState = false
         }
     }
+}
+
+function EndBattle(msg) {
+    msg.channel.send(new Discord.MessageEmbed()
+        .setTitle(EMBED_TITLE)
+        .setColor('#FFFFFF')
+        .addField('Battle Cancelled', 'Noob ran away from the fight eeeeeee')
+        .setFooter('Battle')
+    );
+    inBattle = false;
 }
 
 const CHARACTER_IDS = [
@@ -291,6 +306,14 @@ module.exports = {
                 } else {
                     msg.channel.send(new PlayerStats().CreateEmbed(msg.author));
                 }
+                break;
+
+            case 'cancel':
+                EndBattle(msg);
+                break;
+
+            case 'stop':
+                EndBattle(msg);
                 break;
         }
 

@@ -177,6 +177,25 @@ client.on('message', msg => {
             }
             break;
 
+        case 'bsr':
+            if (client.commands.get('maplink').execute(msg, args, true)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('maplink').name}"`); }if (args[1]) {
+                switch (args[1]) {
+                    case 'maplink':
+                        
+                        break;
+                }
+            } else {
+                msg.channel.send(new Discord.MessageEmbed()
+                    .setTitle('Help -> Beat Saber')
+                    .setColor('#7d46e3')
+                    .addFields(
+                        { name: 'maplink', value: 'Makes a link you can click to take you to the map you desire. This command was made by an idiot and is not idiot proof so you can put what ever you want as the id' }
+                    )
+                    .setFooter('Commands List')
+                );
+            }
+            break;
+
     /******************* Fun Commands *******************/
         case "69":
             if (client.commands.get('69').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('69').name}"`); }
@@ -331,23 +350,13 @@ client.on('message', msg => {
         case 'submitstroke':
             if (client.commands.get('submitstroke').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('submitstroke').name}"`); }
             break;
+
+        case 'game':
+            if (client.commands.get('EatTheThing').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('EatTheThing').name}"`); }
+            break;
     }
-
+    
     //Test code hints
-    //msg.channel.awaitMessages()
-    /*
-    msg.channel.awaitMessages(m => m.content.length > 0, { max: 1, time: 30000, errors: ['time'] }).then(newmsg => {
-        switch (newmsg.first().content) {
-            case 'kk':
-                msg.reply('no u');
-                break;
-
-            case 'oo':
-                msg.reply('pee pee poo poo');
-                break;
-        }
-    });
-    */
 });
 
 client.login(Token);

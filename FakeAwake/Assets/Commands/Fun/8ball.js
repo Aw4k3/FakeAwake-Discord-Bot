@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Status = require('../../include/status.js');
-const Random = require('../../include/random');
+const Random = require('../../include/random.js');
 
 const responses = [
     "As I see it, yes.",
@@ -93,12 +93,15 @@ const responses = [
     "Preposterous. How dare you ask that",
     "as likely as you getting a girlfriend",
     "ape smart. ape say yes",
-    "For Honor was a good game. You can read my explanation as to why in this 20 page document",
+    "For Honor was a good game. You can read my explanation as to why in this 20 page document\nhttps://cdn.discordapp.com/attachments/822455521389838367/835429582282817557/For_Honor.txt",
     "Screaming avocados are as terrifying as the answer to your question",
     "Let me check what the predictions say!\n*pulls paper out of pocket*\nYou're in luck! It's a no!",
     "Let me check what the predictions say!\n*pulls paper out of pocket*\nYou're in luck! It's a yes!",
     "Let me check what the predictions say!\n*pulls paper out of pocket*\nYou're in luck! It's a gun!\nGive me your money!",
     "FakeyWakey-chan will now respond to your question tee-hee.\nwinks It's the usual yes! Good for you onii-chan!",
+    "The answer you seek is ||[CENSORED]||. Hope this helps your situation",
+    "What is the opposite of yes? Another yes! The answer is yes btw, I was merely jesting to make you feel anxious haha. ha.",
+    "Consider your next question wisely, it might be your last :gun: ",
     "There was a 1% chance of you getting this answer, how lucky. You win absolutely nothing, not even an answer"
 ];
 
