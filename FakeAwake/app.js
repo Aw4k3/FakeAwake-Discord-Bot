@@ -351,12 +351,14 @@ client.on('message', msg => {
             if (client.commands.get('submitstroke').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('submitstroke').name}"`); }
             break;
 
-        case 'game':
+        case 'test':
             if (client.commands.get('EatTheThing').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('EatTheThing').name}"`); }
             break;
     }
     
     //Test code hints
+    //msg.reactions.cache.first()
+   
 });
 
 client.login(Token);
@@ -365,6 +367,14 @@ client.login(Token);
 //Uncaught Exception Reporter
 process.on('uncaughtException', (err, origin) => {
     console.log(`${Utils.getTimeStamp()}[Uncaught Exception] Caught exception: ${err}\n` + `${Utils.getTimeStamp()}[Uncaught Exception] Exception origin: ${origin}`);
+    /*
+    console.log(`${Utils.getTimeStamp()}[Self Revive] Restarting FakeAwake!`);
+    
+    client.destroy();
+    client.login(Token);
+
+    console.log(`${Utils.getTimeStamp()}[Self Revive] Done'd!`);
+    */
 });
 
 /**************************** Console Handler ****************************/

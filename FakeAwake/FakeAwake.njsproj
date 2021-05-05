@@ -117,10 +117,19 @@
     <Content Include="Assets\Commands\Utility\changelog.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Assets\include\asciiRenderEngine.js">
+    <Content Include="Assets\include\DiscordGameEngine\animation.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Assets\include\emoteGraphicsEngine.js">
+    <Content Include="Assets\include\DiscordGameEngine\asciiGraphicsEngine.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\DiscordGameEngine\controls.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\DiscordGameEngine\navArea.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\DiscordGameEngine\emoteGraphicsEngine.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Utility\math.js">
@@ -194,6 +203,7 @@
     <Folder Include="Assets\Commands\" />
     <Folder Include="Assets\Images\Battle\" />
     <Folder Include="Assets\include\" />
+    <Folder Include="Assets\include\DiscordGameEngine\" />
     <Folder Include="Assets\temp\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
