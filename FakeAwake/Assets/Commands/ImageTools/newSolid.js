@@ -18,60 +18,27 @@ module.exports = {
             for (var i = 0; i < args.length; i++) { // Check what Flags were specified
                 switch (args[i]) {
                     case '-rgb': // Parse -rgb flag
-                        var R = parseInt(args[i + 1]) || false,
-                            G = parseInt(args[i + 2]) || false,
-                            B = parseInt(args[i + 3]) || false;
+                        var R = parseInt(args[i + 1]) || 0,
+                            G = parseInt(args[i + 2]) || 0,
+                            B = parseInt(args[i + 3]) || 0;
 
-                        if (!R || !G || !B) { // Are all RGB values valid?
-                            msg.channel.send('Invalid RGB');
-                        } else {
-                            color = new Chroma(R, G, B, 1); // Normalize values and create color
-                            isColorSpecified = true;
-                        }
+                        color = new Chroma(R, G, B, 1); // Normalize values and create color
+                        isColorSpecified = true;
                         break;
 
                     case '-rgba': // Parse -rgba flag
-                        var R = parseInt(args[i + 1]) || false,
-                            G = parseInt(args[i + 2]) || false,
-                            B = parseInt(args[i + 3]) || false,
-                            A = parseInt(args[i + 4]) || false;
+                        var R = parseInt(args[i + 1]) || 0,
+                            G = parseInt(args[i + 2]) || 0,
+                            B = parseInt(args[i + 3]) || 0,
+                            A = parseInt(args[i + 4]) || 0;
 
-                        if (!R || !G || !B || !A) { // Are all RGB values valid?
-                            msg.channel.send('Invalid RGBA');
-                        } else {
-                            color = new Chroma(R, G, B, A / 255); // Create color
-                            isColorSpecified = true;
-                        }
+                        color = new Chroma(R, G, B, A / 255); // Create color
+                        isColorSpecified = true;
                         break;
-
+                    
                     case '-resolution': //Parse -resolution Command
+                    case '-res':
                         if (args[i + 1].includes('x')) {
-                            var W = parseInt(args[i + 1].split('x')[0]) || false,
-                                H = parseInt(args[i + 1].split('x')[1]) || false;
-
-                            if (!W || !H) {
-                                msg.channel.send('Invalid Resolution');
-                            } else {
-                                resolution = new Vector.Vector2(W, H);
-                                isResolutionSpecified = true
-                            }
-                        } else {
-                            var W = parseInt(args[i + 1]) || false;
-                            var H = parseInt(args[i + 2]) || false;
-
-                            if (!W || !H) {
-                                msg.channel.send('Invalid Resolution');
-                            } else {
-                                resolution = new Vector.Vector2(W, H);
-                                isResolutionSpecified = true
-                            }
-                        }
-                        break;
-
-
-
-                    case '-res': //Parse -res Command
-                        if (args[i + 1] && args[i + 1].includes('x')) {
                             var W = parseInt(args[i + 1].split('x')[0]) || false,
                                 H = parseInt(args[i + 1].split('x')[1]) || false;
 

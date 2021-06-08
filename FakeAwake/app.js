@@ -4,13 +4,7 @@ const Sharp = require('sharp');
 const Status = require('./Assets/include/status.js');
 const Utils = require('./Assets/include/utils.js');
 const readline = require('readline');
-
-var Nyanners = JSON.parse('{"attackingmoves":{"Bite":[15,"Nyanners jumps out, surprising you, and sinks her one tooth into your skin"],"Scratch":[20,"Nyanners digs her claws into your skin"],"Punch Burst":[25,"Nyanners unleashes her power in a quick succession of powerful punches"],"Chest Bump":[20,"Nyanners rams herself against you, with all her force. Sadly it is not accompanied by a soft smack"]},"staticmoves":{"Screech":["Confusion","Nyanners unleashes a demonic screech which confuses you"],"Degradation":["Horniness","Nyanners insults you ;)"],"Joke":["Horniness","Nyanners increases your arousal with a sexy joke"],"Waifu Call":["Support","Nyanners calls for her Senpais and gains big pp energy"],"Lick":["Confusion","Nyanners suddenly jumps out and licks your cheeck living you in shock"]}}');
-
-const a = Nyanners[Object.keys(Nyanners)[0]];
-const b = Nyanners[Object.keys(Nyanners)[1]];
-
-console.log(a[Object.keys(a)[0]][0]);
+const ConversationAI = require('./Assets/include/ConversationAI/autoLearn.js');
 
 const DateTime = new Date();
 const StartTime = DateTime.getTime();
@@ -24,54 +18,55 @@ const ReadLine = readline.createInterface({
 const client = new Discord.Client();
 const prefix = '.';
 
-/**************************** Setup Commands ****************************/
-client.commands = new Discord.Collection();
+function LoadCommands() {
 
-console.log(Utils.getTimeStamp() + '[Command Handler] Loading commands.');
+    /**************************** Setup Commands ****************************/
+    client.commands = new Discord.Collection();
 
-function EnumerateDirectories(path) {
-    var Directories = FileSystem.readdirSync(path, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory())
-        .map(dirent => dirent.name);
+    console.log(Utils.getTimeStamp() + '[Command Handler] Loading commands.');
 
-    for (var i = 0; i < Directories.length; i++) {
-        Directories[i] = path + '/' + Directories[i];
+    function EnumerateDirectories(path) {
+        var Directories = FileSystem.readdirSync(path, { withFileTypes: true })
+            .filter(dirent => dirent.isDirectory())
+            .map(dirent => dirent.name);
+
+        for (var i = 0; i < Directories.length; i++) {
+            Directories[i] = path + '/' + Directories[i];
+        }
+
+        return Directories;
     }
 
-    return Directories;
-}
+    var commandFiles = [],
+        commandDirs = EnumerateDirectories('./Assets/Commands'); // Gets all folders in ./Assets/Commands
+    commandDirs.push('./Assets/Commands'); // Add the root command folder itself
 
-var commandFiles = [],
-    commandDirs = EnumerateDirectories('./Assets/Commands');
-commandDirs.push('./Assets/Commands');
-
-//Enumerate Command Files
-for (var i = 0; i < commandDirs.length; i++) {                                                             // Go through each directory
-    var temp = FileSystem.readdirSync(commandDirs[i]).filter(files => files.endsWith('.js'))               // Load command files from directory
-    for (var j = 0; j < temp.length; j++) {                                                                // Get each file's path
-        commandFiles.push(commandDirs[i] + '/' + temp[j]);                                                 // Push path to array
-        console.log(Utils.getTimeStamp() + '[Command Handler] Found ' + commandDirs[i] + '/' + temp[j]);   // Log findings
+    //Enumerate Command Files
+    for (var i = 0; i < commandDirs.length; i++) {                                                             // Go through each directory
+        var temp = FileSystem.readdirSync(commandDirs[i]).filter(files => files.endsWith('.js'))               // Load command files from directory
+        for (var j = 0; j < temp.length; j++) {                                                                // Get each file's path
+            commandFiles.push(commandDirs[i] + '/' + temp[j]);                                                 // Push path to array
+            console.log(Utils.getTimeStamp() + '[Command Handler] Found ' + commandDirs[i] + '/' + temp[j]);   // Log findings
+        }
     }
+
+    // Push commands to command collection
+    for (var file of commandFiles) {
+        var command = require(file);
+        client.commands.set(command.name, command);
+        console.log(Utils.getTimeStamp() + '[Command Handler] Loaded ' + file);
+    }
+
+    console.log(Utils.getTimeStamp() + '[Command Handler] Found and loaded ' + commandFiles.length + ' commands.');
 }
 
-// Push commands to command collection
-for (var file of commandFiles) {
-    var command = require(file);
-    client.commands.set(command.name, command);
-    console.log(Utils.getTimeStamp() + '[Command Handler] Loaded ' + file);
-}
-
-console.log(Utils.getTimeStamp() + '[Command Handler] Found and loaded ' + commandFiles.length + ' commands.');
-
+LoadCommands();
 /**************************** End of Setup Commands ****************************/
 Sharp.cache(false);
 
 var MsgChainStack = [];
 var IsFirstMessage = true;
-var LastMessage;
-//const serialPort = new SerialPort('COM8', {baudRate: 115200});
-
-/**************************** Init AI ****************************/
+var LastMessage = new Discord.Message();
 
 
 /**************************** Client Handler ****************************/
@@ -117,52 +112,51 @@ client.on('ready', () => {
 client.on('message', msg => {
     /* Message Chain Handler */
     if (IsFirstMessage) {
-        LastMessage = msg.content;
+        LastMessage = msg;
         IsFirstMessage = false;
     }
 
-    if (msg.content === LastMessage) {
+    if (msg.content === LastMessage.content) { // If msg is the same as the previous
         MsgChainStack.push(msg.content);
-        LastMessage = msg.content;
-    } else {
-        while (MsgChainStack.length > 0) {
-            MsgChainStack.pop();
-        }
-        LastMessage = msg.content;
+        LastMessage = msg;
+    } else { // If msg is not the same as the previous
+        MsgChainStack = [];
+        LastMessage = msg;
         MsgChainStack[0] = msg.content
     }
 
-    if (MsgChainStack.length === 3) {
+    if (MsgChainStack.length === 3) { // If a chain was made
         msg.channel.send(MsgChainStack[0]);
-        while (MsgChainStack.length > 0) {
-            MsgChainStack.pop();
-        }
+        MsgChainStack = [];
     }
+    
+    ConversationAI.AddToTrainingData(msg, LastMessage);
 
     /* Break message into args */
-    if (!msg.content.startsWith(prefix) || msg.author.bot) return
-    const args = msg.content.slice(prefix.length).toLowerCase().split(' ');
+    if (!msg.content.startsWith(prefix) || msg.author.bot) return           // If the message doesn't have the prefix or is from a bot, dont to anything.
+    const args = msg.content.slice(prefix.length).toLowerCase().split(' '); // Get the message, cut off the prefix, change to all lower case, split on space.
+    const argsWithCase = msg.content.slice(prefix.length).split(' ');       // 
 
     /* Log input */
     console.log(Utils.getTimeStamp() + msg.author.tag + ' executed ' + msg.content);
-
+    
     /* Execution */
     switch (args[0]) {
         /*default:
-            msg.reply(`"${msg.content}" is not a command. Type ".help" for a list of commands.`);
+            msg.reply(`'${msg.content}' is not a command. Type '.help' for a list of commands.`);
             break;*/
 
     /******************* Help Command *******************/
         case 'help':
-            if (client.commands.get('help').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('help').name}"`); }
+            if (client.commands.get('help').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('help').name}'`); }
             break;
 
-    /******************* Beat Saber Commands *******************/
+        /******************* Beat Saber Commands *******************/
         case 'bs':
             if (args[1]) {
                 switch (args[1]) {
                     case 'maplink':
-                        if (client.commands.get('maplink').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('maplink').name}"`); }
+                        if (client.commands.get('maplink').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('maplink').name}'`); }
                         break;
                 }
             } else {
@@ -178,7 +172,7 @@ client.on('message', msg => {
             break;
 
         case 'bsr':
-            if (client.commands.get('maplink').execute(msg, args, true)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('maplink').name}"`); }if (args[1]) {
+            if (client.commands.get('maplink').execute(msg, args, true)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('maplink').name}'`); }if (args[1]) {
                 switch (args[1]) {
                     case 'maplink':
                         
@@ -196,92 +190,116 @@ client.on('message', msg => {
             }
             break;
 
-    /******************* Fun Commands *******************/
-        case "69":
-            if (client.commands.get('69').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('69').name}"`); }
+        /******************* Fun Commands *******************/
+        case '420':
+            if (client.commands.get('420').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('420').name}'`); }
             break;
 
-        case "8ball":
-            if (client.commands.get('8ball').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('8ball').name}"`); }
+        case '69':
+            if (client.commands.get('69').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('69').name}'`); }
             break;
 
-        case "awake":
-            if (client.commands.get('awake').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('awake').name}"`); }
+        case '8ball':
+            if (client.commands.get('8ball').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('8ball').name}'`); }
+            break;
+
+        case 'awake':
+            if (client.commands.get('awake').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('awake').name}'`); }
+            break;
+
+        case 'audioPlayer':
+        case 'play':
+        case 'playsound':
+            if (client.commands.get('audioPlayer').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('audioPlayer').name}'`); }
             break;
 
         case 'bark':
-            if (client.commands.get('bark').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bark').name}"`); }
+            if (client.commands.get('bark').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bark').name}'`); }
             break;
 
         case 'battle':
-            if (client.commands.get('BattleMiniGame').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('BattleMiniGame').name}"`); }
+            if (client.commands.get('BattleMiniGame').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('BattleMiniGame').name}'`); }
             break;
 
         case 'bonk':
-            if (client.commands.get('bonk').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bonk').name}"`); }
+            if (client.commands.get('bonk').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bonk').name}'`); }
             break;
 
         case 'bork':
-            if (client.commands.get('bork').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bork').name}"`); }
+            if (client.commands.get('bork').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bork').name}'`); }
             break;
 
         case 'bubblewrap':
-            if (client.commands.get('bubblewrap').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('bubblewrap').name}"`); }
+            if (client.commands.get('bubblewrap').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bubblewrap').name}'`); }
+            break;
+
+        case 'cbt':
+            if (client.commands.get('cbt').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('cbt').name}'`); }
             break;
 
         case 'hate':
-            if (client.commands.get('hate').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('hate').name}"`); }
+            if (client.commands.get('hate').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('hate').name}'`); }
             break;
 
         case 'hornylog':
-            if (client.commands.get('hornylog').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('hornylog').name}"`); }
+            if (client.commands.get('hornylog').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('hornylog').name}'`); }
             break;
 
         case 'howdrunk':
-            if (client.commands.get('howdrunk').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('howdrunk').name}"`); }
+            if (client.commands.get('howdrunk').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('howdrunk').name}'`); }
             break;
 
         case 'howgay':
-            if (client.commands.get('howgay').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('howgay').name}"`); }
+            if (client.commands.get('howgay').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('howgay').name}'`); }
             break;
 
         case 'howhorny':
-            if (client.commands.get('howhorny').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('howhorny').name}"`); }
+            if (client.commands.get('howhorny').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('howhorny').name}'`); }
             break;
 
         case 'love':
-            if (client.commands.get('love').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('love').name}"`); }
+            if (client.commands.get('love').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('love').name}'`); }
             break;
 
         case 'me':
-            if (client.commands.get('me').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('me').name}"`); }
+            if (client.commands.get('me').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('me').name}'`); }
+            break;
+
+        case 'oculus':
+            if (client.commands.get('oculus').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('oculus').name}'`); }
             break;
 
         case 'ratemypp':
-            if (client.commands.get('ratemypp').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('ratemypp').name}"`); }
+            if (client.commands.get('ratemypp').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('ratemypp').name}'`); }
             break;
 
         case 'roll':
-            if (client.commands.get('roll').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('roll').name}"`); }
+            if (client.commands.get('roll').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('roll').name}'`); }
             break;
 
         case 'sanity':
-            if (client.commands.get('sanity').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('sanity').name}"`); }
+            if (client.commands.get('sanity').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('sanity').name}'`); }
+            break;
+
+        case 'soundboard':
+        case 'sb':
+            if (client.commands.get('soundboard').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('soundboard').name}'`); }
             break;
 
         case 'trap':
-            if (client.commands.get('trap').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('trap').name}"`); }
+            if (client.commands.get('trap').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('trap').name}'`); }
             break;
 
         case 'waifu':
-            if (client.commands.get('waifu').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('waifu').name}"`); }
+            if (client.commands.get('waifu').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('waifu').name}'`); }
             break;
         
         case 'weewoo':
-            if (client.commands.get('weewoo').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('weewoo').name}"`); }
+            if (client.commands.get('weewoo').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('weewoo').name}'`); }
             break;
 
     /******************* Image Tools *******************/
+        case 'imagetools':
         case 'it':
             switch (args[1]) {
                 default:
@@ -297,18 +315,18 @@ client.on('message', msg => {
                     );
                     break;
                 case 'newsolid':
-                    if (client.commands.get('newSolid').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('newSolid').name}"`); }
+                    if (client.commands.get('newSolid').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('newSolid').name}'`); }
                     break;
 
                 case 'edit':
-                    if (client.commands.get('edit').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('edit').name}"`); }
+                    if (client.commands.get('edit').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('edit').name}'`); }
                     break;
             }
             break;
 
     /******************* Utility Commands *******************/
         case 'about':
-            if (client.commands.get('about').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('about').name}"`); }
+            if (client.commands.get('about').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('about').name}'`); }
             break;
 
         case 'changelog':
@@ -326,33 +344,34 @@ client.on('message', msg => {
             break;
 
         case 'math':
-            if (client.commands.get('math').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('math').name}"`); }
+            if (client.commands.get('math').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('math').name}'`); }
             break;
 
         case 'ping':
             //client.guilds.cache.array
-            if (client.commands.get('ping').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('ping').name}"`); }
+            if (client.commands.get('ping').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('ping').name}'`); }
             break;
 
         case 'randnum':
-            if (client.commands.get('randnum').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('randnum').name}"`); }
+            if (client.commands.get('randnum').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('randnum').name}'`); }
             break;
 
+        case 'stringmanipulation':
         case 'sm': //String Manipluation
-            if (client.commands.get('StringManipulation').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('StringManipulation').name}"`); }
+            if (client.commands.get('StringManipulation').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('StringManipulation').name}'`); }
             break
 
     /******************* Just Testing Stuff *******************/
         case 'ai':
-            if (client.commands.get('testAI').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('testAI').name}"`); }
+            if (client.commands.get('testAI').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('testAI').name}'`); }
             break;
 
         case 'submitstroke':
-            if (client.commands.get('submitstroke').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('submitstroke').name}"`); }
+            if (client.commands.get('submitstroke').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('submitstroke').name}'`); }
             break;
 
         case 'test':
-            if (client.commands.get('EatTheThing').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command "${client.commands.get('EatTheThing').name}"`); }
+            if (client.commands.get('EatTheThing').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('EatTheThing').name}'`); }
             break;
     }
     
@@ -377,6 +396,22 @@ process.on('uncaughtException', (err, origin) => {
     */
 });
 
+
+async function sound() {
+    var connection = await client.channels.cache.get('699724532235370639').join();
+    var dispatcher = connection.play('./Assets/Audio/ImDieForever.mp3');
+    
+    dispatcher.on('start', () => {
+        console.log('Audio is now playing!');
+    });
+
+    dispatcher.on('finish', () => {
+        console.log('Audio has finished playing!');
+        connection.disconnect()
+    });
+
+    dispatcher.on('error', console.error);
+}
 /**************************** Console Handler ****************************/
 ReadLine.on('line', command => {
     const args = command.split(' ');
@@ -388,6 +423,14 @@ ReadLine.on('line', command => {
                 message += args[i] + ' ';
             }
             client.channels.cache.get(args[1]).send(message);
+            break;
+
+        case 'reload':
+            LoadCommands();
+            break;
+
+        case 'joinvc':
+            sound();
             break;
     }
 });

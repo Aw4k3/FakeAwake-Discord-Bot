@@ -129,6 +129,8 @@ module.exports = {
                             break;
 
                         case '-hueshift':
+                        case '-huerotate':
+                        case '-hue':
                             var rotate = parseFloat(args[i + 1]) || false;
                             if (!rotate) {
                                 msg.channel.send('Invalid hue rotation');
@@ -141,6 +143,7 @@ module.exports = {
                             break;
 
                         case '-saturation':
+                        case '-sat':
                             var saturation = parseFloat(args[i + 1]) || false;
                             if (!saturation) {
                                 msg.channel.send('Invalid saturation');
@@ -217,6 +220,7 @@ module.exports = {
                             break;
 
                         case '-sharpen':
+                        case '-sharpness':
                             var radius = parseFloat(args[i + 1]) || false;
 
                             if (!radius) {

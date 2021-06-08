@@ -30,6 +30,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Assets\Audio\discord call.mp3" />
+    <Content Include="Assets\Audio\thank you forever im die now.mp3" />
+    <Content Include="Assets\Audio\step bro.mp3" />
+    <Content Include="Assets\Audio\welcome to osu.mp3" />
     <Content Include="Assets\Commands\AI and ML\Playground.js">
       <SubType>Code</SubType>
     </Content>
@@ -39,6 +43,8 @@
     <Content Include="Assets\Commands\Beat Saber\maplink.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\cbt.js" />
+    <Content Include="Assets\Commands\Fun\420.js" />
     <Content Include="Assets\Commands\Fun\69.js">
       <SubType>Code</SubType>
     </Content>
@@ -60,6 +66,9 @@
     <Content Include="Assets\Commands\Fun\bubblewrap.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\soundboard.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\EatTheThing.js">
       <SubType>Code</SubType>
     </Content>
@@ -79,6 +88,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\me.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\oculus.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\sanity.js">
@@ -114,13 +126,29 @@
     <Content Include="Assets\Commands\Utility\about.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Utility\audioPlayer.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Utility\changelog.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\AI and ML\Conversation\TrainingData.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\me.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Gifs\oculustrash.gif" />
+    <Content Include="Assets\include\ConversationAI\autoLearn.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\include\DiscordGameEngine\animation.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\include\DiscordGameEngine\asciiGraphicsEngine.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\DiscordGameEngine\character.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\include\DiscordGameEngine\controls.js">
@@ -169,6 +197,9 @@
     <Content Include="Assets\Images\PinkCellBars.png" />
     <Content Include="Assets\Images\PinkJailCell.png" />
     <Content Include="Assets\Images\SadPepeCatBonk.gif" />
+    <Content Include="Assets\include\DiscordGameEngine\sprite.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\include\status.js">
       <SubType>Code</SubType>
     </Content>
@@ -197,6 +228,7 @@
     <Folder Include="Assets\Commands\AI and ML\" />
     <Folder Include="Assets\Commands\Utility\" />
     <Folder Include="Assets\Data\AI and ML\" />
+    <Folder Include="Assets\Data\AI and ML\Conversation\" />
     <Folder Include="Assets\Data\Battle\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Data\" />
@@ -204,6 +236,10 @@
     <Folder Include="Assets\Images\Battle\" />
     <Folder Include="Assets\include\" />
     <Folder Include="Assets\include\DiscordGameEngine\" />
+    <Folder Include="Assets\Games\" />
+    <Folder Include="Assets\Gifs\" />
+    <Folder Include="Assets\Audio\" />
+    <Folder Include="Assets\include\ConversationAI\" />
     <Folder Include="Assets\temp\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

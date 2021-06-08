@@ -46,7 +46,7 @@ module.exports = {
                 JObject['Inmates'][user.user.username] = JObject['Inmates'][user.user.username] + 1;
             }
 
-            FileSystem.writeFileSync('./Assets/Data/HornyJail.json', JSON.stringify(JObject));
+            FileSystem.writeFileSync('./Assets/Data/HornyJail.json', JSON.stringify(JObject, null, 2));
 
             /*********** Set default profile image incase user doesn't have a profile image Kappa ***********/
             var link = user.user.avatarURL() || 'https://harry.gg/forums/uploads/default/original/2X/f/f812e1fa53f09edb629ae7f128746118b2da94c5.png'

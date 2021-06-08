@@ -3,7 +3,7 @@ class navArea {
     Top = 0;
     Right = 1;
     Bottom = 1;
-
+    
     constructor(x, y, w, h) {
         this.Left = x;
         this.Top = y;
