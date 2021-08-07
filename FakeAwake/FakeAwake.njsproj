@@ -40,7 +40,16 @@
     <Content Include="Assets\Commands\AI and ML\submitstroke.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Beat Saber\getScoresaber.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Beat Saber\mapGenerator.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Beat Saber\maplink.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Beat Saber\patternGenerator.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\cbt.js" />
@@ -66,6 +75,19 @@
     <Content Include="Assets\Commands\Fun\bubblewrap.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\doomfish.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\gameSelector.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\howsus.js" />
+    <Content Include="Assets\Commands\Fun\hug.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Fun\pikaThisIsFine.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\soundboard.js">
       <SubType>Code</SubType>
     </Content>
@@ -87,7 +109,7 @@
     <Content Include="Assets\Commands\Fun\howhorny.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Assets\Commands\Fun\me.js">
+    <Content Include="Assets\Commands\Utility\me.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Commands\Fun\oculus.js">
@@ -123,6 +145,9 @@
     <Content Include="Assets\Commands\ImageTools\newSolid.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\TestModules\hydraFight.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Utility\about.js">
       <SubType>Code</SubType>
     </Content>
@@ -132,13 +157,43 @@
     <Content Include="Assets\Commands\Utility\changelog.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Utility\choice.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Data\AI and ML\Conversation\TrainingData.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Data\me.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Games\tictactoe.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Gifs\AnimeHug.gif" />
     <Content Include="Assets\Gifs\oculustrash.gif" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_1.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_2.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_3.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_4.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_5.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_6.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_7.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_8.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\blue_9.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\bomb.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_1.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_2.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_3.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_4.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_5.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_6.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_7.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_8.png" />
+    <Content Include="Assets\Images\BeatSaberBlocks\red_9.png" />
+    <Content Include="Assets\Images\BillyPosingWithHisCuteWaifus.png" />
+    <Content Include="Assets\Images\Doomfish.png" />
+    <Content Include="Assets\Images\SerenityHug.png" />
+    <Content Include="Assets\Images\PaintPalette.png" />
     <Content Include="Assets\include\ConversationAI\autoLearn.js">
       <SubType>Code</SubType>
     </Content>
@@ -210,18 +265,15 @@
     <Content Include="Assets\include\webclient.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="ChangeLog.json">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Assets\Images\awakeGasm.png" />
     <Content Include="Assets\Images\GachiBallPride.png" />
     <Content Include="Assets\Images\Logo.png" />
-    <Content Include="muted.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Assets\Commands\TestModules\" />
     <Folder Include="Assets\Commands\Fun\" />
     <Folder Include="Assets\Commands\Beat Saber\" />
     <Folder Include="Assets\Commands\ImageTools\" />
@@ -234,6 +286,7 @@
     <Folder Include="Assets\Data\" />
     <Folder Include="Assets\Commands\" />
     <Folder Include="Assets\Images\Battle\" />
+    <Folder Include="Assets\Images\BeatSaberBlocks\" />
     <Folder Include="Assets\include\" />
     <Folder Include="Assets\include\DiscordGameEngine\" />
     <Folder Include="Assets\Games\" />

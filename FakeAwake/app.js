@@ -4,6 +4,7 @@ const Sharp = require('sharp');
 const Status = require('./Assets/include/status.js');
 const Utils = require('./Assets/include/utils.js');
 const readline = require('readline');
+
 const ConversationAI = require('./Assets/include/ConversationAI/autoLearn.js');
 
 const DateTime = new Date();
@@ -68,7 +69,6 @@ var MsgChainStack = [];
 var IsFirstMessage = true;
 var LastMessage = new Discord.Message();
 
-
 /**************************** Client Handler ****************************/
 const Colors = [
     '#ff0000', // Red
@@ -86,9 +86,12 @@ const Colors = [
 ]
 client.on('ready', () => {
     client.user.setActivity({
+        /*
         type: 'WATCHING',
         name: 'hentai :)',
         url: 'https://nekos.life/'
+        */
+        name: 'monke'
     });
 
     console.log(`${Utils.getTimeStamp()}Loaded in ${(new Date().getTime() - StartTime) / 1000} seconds!`);
@@ -110,6 +113,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+    MsgCast = msg;
+
     /* Message Chain Handler */
     if (IsFirstMessage) {
         LastMessage = msg;
@@ -131,6 +136,11 @@ client.on('message', msg => {
     }
     
     ConversationAI.AddToTrainingData(msg, LastMessage);
+
+    /* DM Tomato */
+    if (msg.content.toLowerCase() === 'tomato' && msg.channel.type === 'dm') {
+        msg.reply('**You have been infected.** Set your status to :tomato: "dm me the word tomato".');
+    }
 
     /* Break message into args */
     if (!msg.content.startsWith(prefix) || msg.author.bot) return           // If the message doesn't have the prefix or is from a bot, dont to anything.
@@ -156,15 +166,20 @@ client.on('message', msg => {
             if (args[1]) {
                 switch (args[1]) {
                     case 'maplink':
+                    case 'ml':
                         if (client.commands.get('maplink').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('maplink').name}'`); }
                         break;
+
+                    //case 'pattern':
+                    //    if (client.commands.get('bsPatternGenerator').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bsPatternGenerator').name}'`); }
+                    //    break;
                 }
             } else {
                 msg.channel.send(new Discord.MessageEmbed()
                     .setTitle('Help -> Beat Saber')
                     .setColor('#7d46e3')
                     .addFields(
-                        { name: 'maplink', value: 'Makes a link you can click to take you to the map you desire. This command was made by an idiot and is not idiot proof so you can put what ever you want as the id' }
+                        { name: 'Sub Commands', value: '`maplnk|ml` `pattern`' }
                     )
                     .setFooter('Commands List')
                 );
@@ -207,10 +222,11 @@ client.on('message', msg => {
             if (client.commands.get('awake').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('awake').name}'`); }
             break;
 
-        case 'audioPlayer':
+        case 'audioplayer':
+        case 'ap':
         case 'play':
         case 'playsound':
-            if (client.commands.get('audioPlayer').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('audioPlayer').name}'`); }
+            if (client.commands.get('audioPlayer').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('audioPlayer').name}'`); }
             break;
 
         case 'bark':
@@ -237,6 +253,14 @@ client.on('message', msg => {
             if (client.commands.get('cbt').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('cbt').name}'`); }
             break;
 
+        case 'doomfish':
+            if (client.commands.get('doomfish').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('doomfish').name}'`); }
+            break;
+
+        case 'game':
+            if (client.commands.get('gameSelector').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('gameSelector').name}'`); }
+            break;
+
         case 'hate':
             if (client.commands.get('hate').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('hate').name}'`); }
             break;
@@ -257,16 +281,21 @@ client.on('message', msg => {
             if (client.commands.get('howhorny').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('howhorny').name}'`); }
             break;
 
+        case 'hug':
+            if (client.commands.get('hug').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('hug').name}'`); }
+            break;
+
         case 'love':
             if (client.commands.get('love').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('love').name}'`); }
             break;
 
-        case 'me':
-            if (client.commands.get('me').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('me').name}'`); }
-            break;
-
         case 'oculus':
             if (client.commands.get('oculus').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('oculus').name}'`); }
+            break;
+
+        case 'tif':
+        case 'thisisfine':
+            if (client.commands.get('pikaThisIsFine').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('pikaThisIsFine').name}'`); }
             break;
 
         case 'ratemypp':
@@ -283,7 +312,11 @@ client.on('message', msg => {
 
         case 'soundboard':
         case 'sb':
-            if (client.commands.get('soundboard').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('soundboard').name}'`); }
+            if (client.commands.get('soundboard').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('soundboard').name}'`); }
+            break;
+
+        case 'howsus':
+            if (client.commands.get('howsus').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('howsus').name}'`); }
             break;
 
         case 'trap':
@@ -300,6 +333,8 @@ client.on('message', msg => {
 
     /******************* Image Tools *******************/
         case 'imagetools':
+        case 'img':
+        case 'image':
         case 'it':
             switch (args[1]) {
                 default:
@@ -329,22 +364,16 @@ client.on('message', msg => {
             if (client.commands.get('about').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('about').name}'`); }
             break;
 
-        case 'changelog':
-            msg.mentions.members.forEach(user =>
-                msg.channel.send(new Discord.MessageEmbed()
-                    .setTitle('FakeAwake Bot')
-                    .setDescription('Developed by Awake')
-                    .setColor(Status.StatusColor('OK'))
-                    .attachFiles(['./Assets/Images/Logo.png'])
-                    .setThumbnail('attachment://Logo.png')
-                    .addFields(
-                        { name: 'Version 1.0.0', value: GetChanges(1, 0, 0) }
-                    )
-                ));
+        case 'choice':
+            if (client.commands.get('choice').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('choice').name}'`); }
             break;
 
         case 'math':
             if (client.commands.get('math').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('math').name}'`); }
+            break;
+
+        case 'me':
+            if (client.commands.get('me').execute(msg, args, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('me').name}'`); }
             break;
 
         case 'ping':
@@ -373,11 +402,11 @@ client.on('message', msg => {
         case 'test':
             if (client.commands.get('EatTheThing').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('EatTheThing').name}'`); }
             break;
+
+        case 'x':
+            if (client.commands.get('hydraCodeTest').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('hydraCodeTest').name}'`); }
+            break;
     }
-    
-    //Test code hints
-    //msg.reactions.cache.first()
-   
 });
 
 client.login(Token);
@@ -398,20 +427,24 @@ process.on('uncaughtException', (err, origin) => {
 
 
 async function sound() {
-    var connection = await client.channels.cache.get('699724532235370639').join();
-    var dispatcher = connection.play('./Assets/Audio/ImDieForever.mp3');
-    
-    dispatcher.on('start', () => {
-        console.log('Audio is now playing!');
-    });
+    client.channels.cache.get('855390674840191016').join().then(connection => {
+        var dispatcher = connection.play('./Assets/Audio/welcome to osu.mp3');
+        console.log(connection.voice.selfVideo);
 
-    dispatcher.on('finish', () => {
-        console.log('Audio has finished playing!');
-        connection.disconnect()
-    });
+        dispatcher.on('start', () => {
+            console.log('Audio is now playing!');
+        });
 
-    dispatcher.on('error', console.error);
+        dispatcher.on('finish', () => {
+            console.log('Audio has finished playing!');
+            connection.disconnect();
+            connection.cleanup();
+        });
+
+        dispatcher.on('error', console.error);
+    });
 }
+
 /**************************** Console Handler ****************************/
 ReadLine.on('line', command => {
     const args = command.split(' ');
@@ -431,6 +464,10 @@ ReadLine.on('line', command => {
 
         case 'joinvc':
             sound();
+            break;
+
+        case 'react':
+            client.guilds.cache.get(args[1]).channels.cache.get(args[2]).messages.fetch(args[3]).then(msg => msg.react(args[4]));
             break;
     }
 });

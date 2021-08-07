@@ -16,7 +16,7 @@ class Viewport {
     }
 
     Render() {
-        this.pixels = new Array(this.height).fill(0).map(() => new Array(this.width).fill(0));
+        this.pixels = new Array(this.height).fill(this.background).map(() => new Array(this.width).fill(this.background));
 
         // Create Background
         for (var i = 0; i < this.height; i++) { // For each row

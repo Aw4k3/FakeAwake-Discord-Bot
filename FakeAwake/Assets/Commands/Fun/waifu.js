@@ -4,6 +4,7 @@ const Utils = require('../../include/utils.js');
 const Status = require('../../include/status.js');
 const FileSystem = require('fs');
 const Neko = require('nekos.life');
+const Https = require('https');
 
 const Waifus = FileSystem.readdirSync('./Assets/Images/Waifus');
 const Lewd = FileSystem.readdirSync('./Assets/Images/Waifus/Lewd')
@@ -161,6 +162,32 @@ module.exports = {
                         });
                         break;
 
+                    case '-miku':
+                        {
+                            const request = Https.request({
+                                hostname: 'miku-for.us',
+                                path: '/api/v2/random',
+                                method: 'GET'
+                            }, response => {
+                                console.log(`${Utils.getTimeStamp()}StatusCode: ${response.statusCode}`);
+
+                                response.on('data', Data => {
+                                    const Parsed = JSON.parse(Data);
+                                    console.log(Parsed);
+                                    NekoEmbed.setDescription('Miku');
+                                    NekoEmbed.setImage(Parsed["url"]);
+                                    msg.channel.send(NekoEmbed);
+                                });
+                            });
+
+                            request.on('error', error => {
+                                console.error(error);
+                            })
+
+                            request.end();
+                        }
+                        break;
+
                     case '-mio':
                         NekoEmbed.setDescription('Just for Jk');
                         NekoEmbed.attachFiles(['./Assets/Images/mio.gif'])
@@ -248,6 +275,7 @@ module.exports = {
                         });
                         break;
 
+                    case '-flags':
                     case 'flags':
                         msg.channel.send(new Discord.MessageEmbed()
                             .setTitle('Waifu Flags (I will NOT be adding proper NSFW support)')

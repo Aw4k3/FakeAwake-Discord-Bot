@@ -10,7 +10,7 @@ module.exports = {
                 .setTitle('Bonk')
                 .attachFiles(['./Assets/Images/SadPepeCatBonk.gif'])
                 .setThumbnail('attachment://SadPepeCatBonk.gif')
-                .addField('Bonked', msg.mentions.users.array().join())
+                .addField('Bonked', msg.mentions.users.array().join('\n'))
                 .setFooter(`Bonked by ${msg.author.tag}`));
         } else {
             msg.channel.send(new Discord.MessageEmbed()

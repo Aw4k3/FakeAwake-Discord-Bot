@@ -4,7 +4,7 @@ const navArea = require('../../include/DiscordGameEngine/navArea.js');
 const controls = require('../../include/DiscordGameEngine/controls.js');
 const character = require('../../include/DiscordGameEngine/character.js');
 
-const BOT_ID = '707698652076048406'
+const BOT_ID = '707698652076048406';
 
 var Viewport;
 var Controls;

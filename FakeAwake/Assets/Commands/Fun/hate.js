@@ -20,7 +20,7 @@ module.exports = {
                 .attachFiles(['./Assets/Images/hateIcon.png'])
                 .setThumbnail('attachment://hateIcon.png')
                 .addFields(
-                    { name: `${msg.author.username} x ${StringResult}`, value: `Share ${Random.RandInt(0, UpperLimit)}% hate.` }
+                    { name: `${msg.author.username} x ${StringResult}`, value: `${Random.RandInt(0, UpperLimit)}% hate.` }
                 )
                 .setFooter('*Death Stare*')
             );

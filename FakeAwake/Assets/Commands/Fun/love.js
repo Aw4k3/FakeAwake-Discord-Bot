@@ -20,7 +20,7 @@ module.exports = {
                 .attachFiles(['./Assets/Images/LoveIcon.png'])
                 .setThumbnail('attachment://LoveIcon.png')
                 .addFields(
-                    { name: `${msg.author.username} x ${StringResult}`, value: `Share ${Random.RandInt(0, UpperLimit)}% love.` }
+                    { name: `${msg.author.username} x ${StringResult}`, value: `${Random.RandInt(0, UpperLimit)}% love.` }
                 )
                 .setFooter('*UwU*')
             );
