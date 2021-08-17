@@ -137,11 +137,6 @@ client.on('message', msg => {
     
     ConversationAI.AddToTrainingData(msg, LastMessage);
 
-    /* DM Tomato */
-    if (msg.content.toLowerCase() === 'tomato' && msg.channel.type === 'dm') {
-        msg.reply('**You have been infected.** Set your status to :tomato: "dm me the word tomato".');
-    }
-
     /* Break message into args */
     if (!msg.content.startsWith(prefix) || msg.author.bot) return           // If the message doesn't have the prefix or is from a bot, dont to anything.
     const args = msg.content.slice(prefix.length).toLowerCase().split(' '); // Get the message, cut off the prefix, change to all lower case, split on space.
@@ -170,9 +165,9 @@ client.on('message', msg => {
                         if (client.commands.get('maplink').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('maplink').name}'`); }
                         break;
 
-                    //case 'pattern':
-                    //    if (client.commands.get('bsPatternGenerator').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bsPatternGenerator').name}'`); }
-                    //    break;
+                    case 'pattern':
+                        if (client.commands.get('bsPatternGenerator').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bsPatternGenerator').name}'`); }
+                        break;
                 }
             } else {
                 msg.channel.send(new Discord.MessageEmbed()
@@ -251,6 +246,12 @@ client.on('message', msg => {
 
         case 'cbt':
             if (client.commands.get('cbt').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('cbt').name}'`); }
+            break;
+
+        case 'chokemepls':
+        case 'chokemeplz':
+        case 'chokemeplease':
+            if (client.commands.get('chokeMePlz').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('chokeMePlz').name}'`); }
             break;
 
         case 'doomfish':
@@ -383,6 +384,10 @@ client.on('message', msg => {
 
         case 'randnum':
             if (client.commands.get('randnum').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('randnum').name}'`); }
+            break;
+
+        case 'stats':
+            if (client.commands.get('getUserStats').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('getUserStats').name}'`); }
             break;
 
         case 'stringmanipulation':

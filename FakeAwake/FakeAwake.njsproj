@@ -75,6 +75,9 @@
     <Content Include="Assets\Commands\Fun\bubblewrap.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Fun\chokeMePlz.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Fun\doomfish.js">
       <SubType>Code</SubType>
     </Content>
@@ -160,7 +163,13 @@
     <Content Include="Assets\Commands\Utility\choice.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Utility\stats.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Data\AI and ML\Conversation\TrainingData.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\UserStats.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Data\me.json">
@@ -170,6 +179,10 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Gifs\AnimeHug.gif" />
+    <Content Include="Assets\Gifs\Bonk\CatBonk.gif" />
+    <Content Include="Assets\Gifs\Bonk\DogeBonk.gif" />
+    <Content Include="Assets\Gifs\Bonk\EssexBonk.gif" />
+    <Content Include="Assets\Gifs\Bonk\KoroneBonk.gif" />
     <Content Include="Assets\Gifs\oculustrash.gif" />
     <Content Include="Assets\Images\BeatSaberBlocks\blue_1.png" />
     <Content Include="Assets\Images\BeatSaberBlocks\blue_2.png" />
@@ -251,7 +264,7 @@
     <Content Include="Assets\Images\MissingTexture.png" />
     <Content Include="Assets\Images\PinkCellBars.png" />
     <Content Include="Assets\Images\PinkJailCell.png" />
-    <Content Include="Assets\Images\SadPepeCatBonk.gif" />
+    <Content Include="Assets\Gifs\Bonk\SadPepeCatBonk.gif" />
     <Content Include="Assets\include\DiscordGameEngine\sprite.js">
       <SubType>Code</SubType>
     </Content>
@@ -259,6 +272,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\include\random.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\include\userStatsLogger.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\include\utils.js" />
@@ -287,6 +303,7 @@
     <Folder Include="Assets\Commands\" />
     <Folder Include="Assets\Images\Battle\" />
     <Folder Include="Assets\Images\BeatSaberBlocks\" />
+    <Folder Include="Assets\Gifs\Bonk\" />
     <Folder Include="Assets\include\" />
     <Folder Include="Assets\include\DiscordGameEngine\" />
     <Folder Include="Assets\Games\" />

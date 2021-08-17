@@ -34,6 +34,7 @@ module.exports = {
             for (var i = 0; i < args.length; i++) {
                 switch (args[i]) {
 
+                    case 'avatar':
                     case '-avatar':
                         NekoClient.sfw.avatar().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -44,6 +45,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'baka':
                     case '-baka':
                         NekoClient.sfw.baka().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -54,6 +56,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'cuddle':
                     case '-cuddle':
                         NekoClient.sfw.cuddle().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -64,6 +67,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'feed':
                     case '-feed':
                         NekoClient.sfw.feed().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -74,6 +78,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'foxgirl':
                     case '-foxgirl':
                         NekoClient.sfw.foxGirl().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -84,6 +89,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'gecg':
                     case '-gecg':
                         NekoClient.sfw.gecg().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -94,6 +100,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'gif':
                     case '-gif':
                         NekoClient.sfw.nekoGif().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -104,6 +111,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'goose':
                     case '-goose':
                         NekoClient.sfw.goose().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -114,6 +122,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'holo':
                     case '-holo':
                         NekoClient.sfw.holo().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -124,6 +133,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'kemonomimi':
                     case '-kemonomimi':
                         NekoClient.sfw.kemonomimi().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -134,6 +144,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'kiss':
                     case '-kiss':
                         NekoClient.sfw.kiss().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -144,6 +155,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'lewd':
                     case '-lewd':
                         idx = Random.RandInt(0, Lewd.length);
                         NekoEmbed.setDescription('Lewd');
@@ -152,6 +164,7 @@ module.exports = {
                         msg.channel.send(NekoEmbed);
                         break;
 
+                    case 'meow':
                     case '-meow':
                         NekoClient.sfw.meow().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -162,6 +175,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'miku':
                     case '-miku':
                         {
                             const request = Https.request({
@@ -188,6 +202,7 @@ module.exports = {
                         }
                         break;
 
+                    case 'mio':
                     case '-mio':
                         NekoEmbed.setDescription('Just for Jk');
                         NekoEmbed.attachFiles(['./Assets/Images/mio.gif'])
@@ -195,6 +210,7 @@ module.exports = {
                         msg.channel.send(NekoEmbed);
                         break;
 
+                    case 'neko':
                     case '-neko':
                         NekoClient.sfw.neko().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -205,6 +221,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'pat':
                     case '-pat':
                         NekoClient.sfw.pat().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -215,6 +232,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'poke':
                     case '-poke':
                         NekoClient.sfw.poke().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -225,6 +243,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'slap':
                     case '-slap':
                         NekoClient.sfw.slap().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -235,6 +254,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'smug':
                     case '-smug':
                         NekoClient.sfw.smug().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -245,6 +265,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'tickle':
                     case '-tickle':
                         NekoClient.sfw.tickle().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -255,6 +276,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'wallpaper':
                     case '-wallpaper':
                         NekoClient.sfw.wallpaper().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -265,6 +287,7 @@ module.exports = {
                         });
                         break;
 
+                    case 'woof':
                     case '-woof':
                         NekoClient.sfw.woof().then(image => {
                             console.log(Utils.getTimeStamp() + 'Fetched url ' + image.url);
@@ -275,8 +298,8 @@ module.exports = {
                         });
                         break;
 
-                    case '-flags':
                     case 'flags':
+                    case '-flags':
                         msg.channel.send(new Discord.MessageEmbed()
                             .setTitle('Waifu Flags (I will NOT be adding proper NSFW support)')
                             .setDescription('waifu [-flag]')

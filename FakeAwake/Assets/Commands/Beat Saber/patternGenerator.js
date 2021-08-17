@@ -3,6 +3,7 @@ const Status = require('../../include/status.js');
 const Sharp = require('sharp');
 const FileSystem = require('fs');
 const Random = require('../../include/random.js');
+const Utils = require('../../include/utils.js');
 
 const BloqDir = './Assets/Images/BeatSaberBlocks';
 const Bloq = FileSystem.readdirSync(BloqDir).splice(1, FileSystem.readdirSync(BloqDir).length - 1);
@@ -36,6 +37,9 @@ module.exports = {
                     break;
             }
         }
+
+        Rows = Utils.Clamp(Rows, 1, 20);
+        Lanes = Utils.Clamp(Lanes, 1, 20);
 
         var Canvas = Sharp({
             create: {

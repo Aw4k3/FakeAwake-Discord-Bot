@@ -1,56 +1,56 @@
 const Discord = require('discord.js');
 const Status = require('../../include/status.js');
+const UserStats = require('../../include/userStatsLogger');
 
 module.exports = {
     name: 'hug',
     description: 'hug someone',
     execute(msg, args) {
         if (msg.mentions.users.size === 1) {
+            let Thumbnail = './Assets/Gifs/AnimeHug.gif';
             if (msg.author.id === '713807072105332817') {
-                msg.channel.send(new Discord.MessageEmbed()
-                    .setTitle('Hugs')
-                    .setColor('#f582ff')
-                    .attachFiles(['./Assets/Images/SerenityHug.png'])
-                    .setThumbnail('attachment://SerenityHug.png')
-                    .setDescription(`${msg.author} hugs ${msg.mentions.users.first()}`)
-                    .setFooter(`Hugged by ${msg.author.tag}`));
-            } else {
-                msg.channel.send(new Discord.MessageEmbed()
-                    .setTitle('Hugs')
-                    .setColor('#f582ff')
-                    .attachFiles(['./Assets/Gifs/AnimeHug.gif'])
-                    .setThumbnail('attachment://AnimeHug.gif')
-                    .setDescription(`${msg.author} hugs ${msg.mentions.users.first()}`)
-                    .setFooter(`Hugged by ${msg.author.tag}`));
+                Thumbnail = './Assets/Images/SerenityHug.png';
             }
-        } else if (msg.mentions.users.size > 1) {
-            if (msg.author.id === '713807072105332817') {
-                msg.channel.send(new Discord.MessageEmbed()
-                    .setTitle('Hugs')
-                    .setColor('#f582ff')
-                    .attachFiles(['./Assets/Images/SerenityHug.png'])
-                    .setThumbnail('attachment://SerenityHug.png')
-                    .addField('Hugs to', msg.mentions.users.array().join('\n'))
-                    .setFooter(`Hugged by ${msg.author.tag}`));
-            } else {
-                msg.channel.send(new Discord.MessageEmbed()
-                    .setTitle('Hugs')
-                    .setColor('#f582ff')
-                    .attachFiles(['./Assets/Gifs/AnimeHug.gif'])
-                    .setThumbnail('attachment://AnimeHug.gif')
-                    .addField('Hugs to', msg.mentions.users.array().join('\n'))
-                    .setFooter(`Hugged by ${msg.author.tag}`));
-            }
-        } else {
             msg.channel.send(new Discord.MessageEmbed()
-                .setTitle('Usage')
-                .setColor(Status.StatusColor('ERROR'))
-                .addFields(
-                    { name: 'Bracket Definitions', value: '{Required} [optional]' },
-                    { name: 'hug  {@username} [@username2] [@username3]...', value: 'Hug the entered users.' }
-                )
-                .setFooter(Status.InvalidCommandMessage())
-            );
+                .setTitle('Hugs')
+                .setColor('#f582ff')
+                .attachFiles([Thumbnail])
+                .setThumbnail(`attachment://${Thumbnail.split('/')[Thumbnail.split('/').length - 1]}`)
+                .setDescription(`${msg.author} hugs ${msg.mentions.users.first()}`)
+                .setFooter(`Hugged by ${msg.author.tag}`));
+            msg.mentions.users.forEach(user => {
+                UserStats.LogUserStat(msg.author, 'HugsGiven', user);
+                UserStats.LogUserStat(user, 'HugsReceived', msg.author);
+            });
+        } else if (msg.mentions.users.size > 1) {
+            let Thumbnail = './Assets/Gifs/AnimeHug.gif';
+            if (msg.author.id === '713807072105332817') {
+                Thumbnail = './Assets/Images/SerenityHug.png';
+            }
+            msg.channel.send(new Discord.MessageEmbed()
+                .setTitle('Hugs')
+                .setColor('#f582ff')
+                .attachFiles([Thumbnail])
+                .setThumbnail(`attachment://${Thumbnail.split('/')[Thumbnail.split('/').length - 1]}`)
+                .addField('Hugs to', msg.mentions.users.array().join('\n'))
+                .setFooter(`Hugged by ${msg.author.tag}`));
+            msg.mentions.users.forEach(user => {
+                UserStats.LogUserStat(msg.author, 'HugsGiven', user);
+                UserStats.LogUserStat(user, 'HugsReceived', msg.author);
+            });
+        } else {
+            let Thumbnail = './Assets/Gifs/AnimeHug.gif';
+            if (msg.author.id === '713807072105332817') {
+                Thumbnail = './Assets/Images/SerenityHug.png';
+            }
+            args.shift();
+            msg.channel.send(new Discord.MessageEmbed()
+                .setTitle('Hugs')
+                .setColor('#f582ff')
+                .attachFiles([Thumbnail])
+                .setThumbnail(`attachment://${Thumbnail.split('/')[Thumbnail.split('/').length - 1]}`)
+                .setDescription(`${msg.author} hugs ${args.join(' ')}`)
+                .setFooter(`Hugged by ${msg.author.tag}`));
         }
 
         return true;

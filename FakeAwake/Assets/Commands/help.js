@@ -24,7 +24,7 @@ module.exports = {
                 { name: '<a:PepoSabers:747199106262237284> Beat Saber', value: '`bs maplink` `bsr`' },
 
                 // Fun
-                { name: ':game_die: Fun', value: '`420` `69` `8ball` `awake` `audioplayer|ap|play|playsound` `bark` `bonk` `bork` `bubblewrap` `cbt` `doomfish` `hate` `hornylog` `howdrunk` `howgay` `howhorny` `hug` `love` `oculus` `thisisfine|tif` `ratemypp` `roll` `sanity` `sb|soundboard` `trap` `waifu` `weewoo`' },
+                { name: ':game_die: Fun', value: '`420` `69` `8ball` `awake` `audioplayer|ap|play|playsound` `bark` `bonk` `bork` `bubblewrap` `cbt` `chokemeplz|chokemepls|chokemeplease` `doomfish` `hate` `hornylog` `howdrunk` `howgay` `howhorny` `hug` `love` `oculus` `thisisfine|tif` `ratemypp` `roll` `sanity` `sb|soundboard` `trap` `waifu` `weewoo`' },
 
                 // Image Tools
                 { name: ':paintbrush: Image Tools', value: '`it newsolid` `it edit`' },
