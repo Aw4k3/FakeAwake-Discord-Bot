@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
 const FileSystem = require('fs');
 const Sharp = require('sharp');
+const readline = require('readline');
 const Status = require('./Assets/include/status.js');
 const Utils = require('./Assets/include/utils.js');
-const readline = require('readline');
+const Banking = require('./Assets/Commands/Banking/Banking.js');
 
 const ConversationAI = require('./Assets/include/ConversationAI/autoLearn.js');
 
@@ -114,6 +115,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     MsgCast = msg;
+    Banking.TickBalance(msg.author);
 
     /* Message Chain Handler */
     if (IsFirstMessage) {
@@ -156,6 +158,36 @@ client.on('message', msg => {
             if (client.commands.get('help').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('help').name}'`); }
             break;
 
+        /******************* Fun Commands *******************/
+        case 'bank':
+        case 'banking':
+            switch (args[1]) {
+                case 'bal':
+                case 'balance':
+                case 'money':
+                case 'monies':
+                    if (client.commands.get('bankBalance').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bankBalance').name}'`); }
+                    break;
+
+                case 'open':
+                case 'create':
+                case 'make':
+                    if (client.commands.get('bankOpenAccount').execute(msg, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bankOpenAccount').name}'`); }
+                    break;
+
+                case 'activecurrency':
+                case 'setactivecurrency':
+                    if (client.commands.get('bankSetActiveCurrency').execute(msg, argsWithCase)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bankSetActiveCurrency').name}'`); }
+                    break;
+            }
+            break;
+
+        case 'bal':
+        case 'balance':
+        case 'money':
+        case 'monies':
+            if (client.commands.get('bankBalance').execute(msg, args)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('bankBalance').name}'`); }
+            break;
         /******************* Beat Saber Commands *******************/
         case 'bs':
             if (args[1]) {
@@ -378,8 +410,11 @@ client.on('message', msg => {
             break;
 
         case 'ping':
-            //client.guilds.cache.array
             if (client.commands.get('ping').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('ping').name}'`); }
+            break;
+
+        case 'pet':
+            if (client.commands.get('petGenerator').execute(msg, args, client)) { console.log(`${Utils.getTimeStamp()}[Command Handler] Successfully executed command '${client.commands.get('petGenerator').name}'`); }
             break;
 
         case 'randnum':

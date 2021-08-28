@@ -57,7 +57,63 @@ module.exports = {
                 console.log(Utils.getTimeStamp() + '[Download] Avatar URL: ' + user.user.avatarURL());
                 console.log(Utils.getTimeStamp() + '[Download] Downloaded profile image of ' + user.user.username);
 
-            /*********** Composite Images ***********/
+                /*********** Composite Images ***********/
+                const StandardJailComposition = [
+                    {
+                        input: './Assets/temp/avatar256.png',
+                        gravity: 'center'
+                    },
+                    {
+                        input: './Assets/Images/PinkCellBars.png'
+                    }
+                ];
+
+                const EasterJailComposition = [
+                    {
+                        input: './Assets/temp/avatar256.png',
+                        gravity: 'center'
+                    },
+                    {
+                        input: './Assets/Images/TopRibbon.png',
+                        top: 0,
+                        left: 0
+                    },
+                    {
+                        input: './Assets/Images/IconRibbons.png',
+                    },
+                    {
+                        input: './Assets/Images/Bunnies.png',
+                    },
+                    {
+                        input: './Assets/Images/PinkCellBars.png'
+                    }
+                ];
+
+                const BadJailComposition = [
+                    {
+                        input: './Assets/Images/WorstPrisonCell.png'
+                    },
+                    {
+                        input: './Assets/temp/avatar256.png',
+                        gravity: 'center'
+                    },
+                    {
+                        input: './Assets/Images/IronBars.png'
+                    }
+                ];
+
+                var UseComp = StandardJailComposition;
+
+                switch (args[2]) {
+                    case 'easter':
+                        UseComp = EasterJailComposition;
+                        break;
+
+                    case 'superhorny':
+                        UseComp = BadJailComposition;
+                        break;
+                }
+
                 if (ColorOverlay) {
                     Sharp({
                         create: {
@@ -99,26 +155,7 @@ module.exports = {
                 } else {
                     Sharp('./Assets/temp/avatar128.webp').resize(256, 256).toFile('./Assets/temp/avatar256.png').then(composite => {
                         Sharp('./Assets/Images/PinkJailCell.png')
-                            .composite([
-                                {
-                                    input: './Assets/temp/avatar256.png',
-                                    gravity: 'center'
-                                },
-                                /*{
-                                    input: './Assets/Images/TopRibbon.png',
-                                    top: 0,
-                                    left: 0
-                                },
-                                {
-                                    input: './Assets/Images/IconRibbons.png',
-                                },
-                                {
-                                    input: './Assets/Images/Bunnies.png',
-                                },*/
-                                {
-                                    input: './Assets/Images/PinkCellBars.png'
-                                }
-                            ])
+                            .composite(UseComp)
                             .toFile('./Assets/temp/comp.png', function (e) { console.log(Utils.getTimeStamp() + e) });
                     }).then(sendit => {
                         /*********** Send Embed ***********/

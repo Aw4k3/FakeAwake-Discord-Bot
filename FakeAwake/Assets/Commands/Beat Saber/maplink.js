@@ -6,10 +6,10 @@ module.exports = {
     description: 'Gets link to the specified bsr code.',
     execute(msg, args, bsr = false) {
         if (args[2] && !bsr) {
-            msg.channel.send('https://beatsaver.com/beatmap/' + args[2]);
+            msg.channel.send('https://beatsaver.com/maps/' + args[2]);
         }
         else if (args[1] && bsr) {
-            msg.channel.send('https://beatsaver.com/beatmap/' + args[1]);
+            msg.channel.send('https://beatsaver.com/maps/' + args[1]);
         } else {
             msg.channel.send(new Discord.MessageEmbed()
                 .setTitle('BeatSaver Map Linker Grabber')

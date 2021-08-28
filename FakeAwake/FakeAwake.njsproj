@@ -40,6 +40,18 @@
     <Content Include="Assets\Commands\AI and ML\submitstroke.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Banking\Balance.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Banking\Banking.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Banking\OpenAccount.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Commands\Banking\SetActiveCurrency.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Beat Saber\getScoresaber.js">
       <SubType>Code</SubType>
     </Content>
@@ -163,10 +175,16 @@
     <Content Include="Assets\Commands\Utility\choice.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Assets\Commands\Utility\PetGenerator.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Assets\Commands\Utility\stats.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Data\AI and ML\Conversation\TrainingData.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Assets\Data\Banking.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Assets\Data\UserStats.json">
@@ -203,10 +221,13 @@
     <Content Include="Assets\Images\BeatSaberBlocks\red_7.png" />
     <Content Include="Assets\Images\BeatSaberBlocks\red_8.png" />
     <Content Include="Assets\Images\BeatSaberBlocks\red_9.png" />
+    <Content Include="Assets\Images\OnePoundCoin.png" />
+    <Content Include="Assets\Images\PauseFishCoin.png" />
     <Content Include="Assets\Images\BillyPosingWithHisCuteWaifus.png" />
     <Content Include="Assets\Images\Doomfish.png" />
     <Content Include="Assets\Images\SerenityHug.png" />
     <Content Include="Assets\Images\PaintPalette.png" />
+    <Content Include="Assets\Images\WorstPrisonCell.png" />
     <Content Include="Assets\include\ConversationAI\autoLearn.js">
       <SubType>Code</SubType>
     </Content>
@@ -289,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Assets\Commands\Banking\" />
     <Folder Include="Assets\Commands\TestModules\" />
     <Folder Include="Assets\Commands\Fun\" />
     <Folder Include="Assets\Commands\Beat Saber\" />

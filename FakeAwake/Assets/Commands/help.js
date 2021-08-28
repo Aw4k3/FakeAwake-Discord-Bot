@@ -23,6 +23,9 @@ module.exports = {
                 // Beat Saber
                 { name: '<a:PepoSabers:747199106262237284> Beat Saber', value: '`bs maplink` `bsr`' },
 
+                // Monies
+                { name: '<:PauseFishCoin:880124778227335228> Banking [bank...|banking...]', value: '`bal|balance|money|monies`' },
+
                 // Fun
                 { name: ':game_die: Fun', value: '`420` `69` `8ball` `awake` `audioplayer|ap|play|playsound` `bark` `bonk` `bork` `bubblewrap` `cbt` `chokemeplz|chokemepls|chokemeplease` `doomfish` `hate` `hornylog` `howdrunk` `howgay` `howhorny` `hug` `love` `oculus` `thisisfine|tif` `ratemypp` `roll` `sanity` `sb|soundboard` `trap` `waifu` `weewoo`' },
 

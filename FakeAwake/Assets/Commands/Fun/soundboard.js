@@ -40,8 +40,15 @@ async function PlaySound(msg, soundfile) {
     if (msg.member.voice.channel) {
         connection = await msg.member.voice.channel.join();
         const dispatcher = connection.play(`./Assets/Audio/${soundfile}`)
-
+        var Duration = 0;
+        
         dispatcher.on('start', () => {
+            msg.channel.send(new Discord.MessageEmbed()
+                .setTitle('🎵 Soundboard')
+                .setColor(Status.StatusColor('OK'))
+                .setDescription(`Now playing **${soundfile}**\nDuration ${Duration} seconds.`)
+            );
+
             console.log(`${Utils.getTimeStamp()}${soundfile} is now playing!`);
         });
 
@@ -113,7 +120,7 @@ module.exports = {
 
             var searchString = '';
 
-            for (var i = 1; i < args.length; i++) {
+            for (let i = 1; i < args.length; i++) {
                 searchString += args[i];
             }
 

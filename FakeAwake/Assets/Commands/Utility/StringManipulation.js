@@ -14,6 +14,7 @@ module.exports = {
             var swapletters = msg.content.includes('-swapletters');
             var removeletters = msg.content.includes('-removeletters');
             var stroke = msg.content.includes('-stroke'); //Insert smug face
+            var roadman = msg.content.includes('-roadman');
 
             if (uwufy) { temp = temp.replace('-uwufy', ''); }
             if (randomcase) { temp = temp.replace('-randomcase', ''); }
@@ -24,6 +25,22 @@ module.exports = {
                 randomcase = true;
                 swapletters = true;
                 removeletters = true;
+            }
+            if (roadman) { temp = temp.replace('-roadman', ''); }
+
+            if (roadman) {
+                temp = temp.split(' ');
+                for (var i = 0; i < temp.length; i++) { // Roadman
+                    switch (true) {
+                        case ['i', 'he', 'she', 'they', 'them'].inclues(temp[i]):
+                            temp[i] = 'man';
+                            break;
+
+                        case ['house'].inclues(temp[i]):
+                            temp[i] = 'ends';
+                            break;
+                    }
+                }
             }
 
             var StringResult = temp.trim().split('');

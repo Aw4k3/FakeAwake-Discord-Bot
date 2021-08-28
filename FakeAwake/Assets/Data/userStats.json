@@ -2,21 +2,164 @@
   "301985885870882827": {
     "User": "Awake#4642",
     "HugsGiven": {
+      "Total": 12,
+      "Awake#4642": 1,
+      "Serena Rose#2738": 7,
+      "CrimsonEevee#6886": 1,
+      "Bitz#1010": 1,
+      "Elbeant#8785": 1,
+      "uhhhcj#0288": 1
+    },
+    "HugsReceived": {
+      "Total": 9,
+      "Serena Rose#2738": 7,
+      "CrimsonEevee#6886": 1,
+      "Bitz#1010": 1
+    },
+    "BonksGiven": {
+      "Total": 7,
+      "Awake#4642": 1,
+      "FakeAwake#3297": 1,
+      "Tysue#4174": 1,
+      "nearlymars#6926": 2,
+      "CrimsonEevee#6886": 1,
+      "Luna ^w^#5228": 1
+    },
+    "BonksReceived": {
+      "Total": 2,
+      "Awake#4642": 1,
+      "nearlymars#6926": 1
+    }
+  },
+  "713807072105332817": {
+    "User": "Serena Rose#2738",
+    "HugsReceived": {
+      "Total": 8,
+      "Serena Rose#2738": 1,
+      "Awake#4642": 7
+    },
+    "HugsGiven": {
+      "Total": 8,
+      "Awake#4642": 7,
+      "nearlymars#6926": 1
+    }
+  },
+  "707698652076048406": {
+    "User": "FakeAwake#3297",
+    "BonksReceived": {
       "Total": 0
+    },
+    "HugsReceived": {
+      "Total": 1,
+      "Tysue#4174": 1
+    }
+  },
+  "227897664333676544": {
+    "User": "CrimsonEevee#6886",
+    "HugsGiven": {
+      "Total": 0
+    },
+    "HugsReceived": {
+      "Total": 1,
+      "Awake#4642": 1
+    },
+    "BonksReceived": {
+      "Total": 2,
+      "Awake#4642": 1,
+      "nearlymars#6926": 1
+    }
+  },
+  "249494456439406594": {
+    "User": "Tysue#4174",
+    "HugsGiven": {
+      "Total": 0
+    },
+    "BonksReceived": {
+      "Total": 1,
+      "Awake#4642": 1
+    }
+  },
+  "274815865827098624": {
+    "User": "nearlymars#6926",
+    "BonksReceived": {
+      "Total": 2,
+      "jk#8369": 1,
+      "Awake#4642": 1
+    },
+    "BonksGiven": {
+      "Total": 6,
+      "Awake#4642": 1,
+      "Synchos#9798": 2,
+      "Danroleth#8243": 1,
+      "CrimsonEevee#6886": 1,
+      "Valkyrie Oblige#4471": 1
     },
     "HugsReceived": {
       "Total": 1,
       "Serena Rose#2738": 1
     }
   },
-  "713807072105332817": {
-    "User": "Serena Rose#2738",
+  "172410617066422273": {
+    "User": "Bitz#1010",
     "HugsReceived": {
       "Total": 0
     },
     "HugsGiven": {
       "Total": 1,
       "Awake#4642": 1
+    }
+  },
+  "803557715619872820": {
+    "User": "Corrupted#3345",
+    "HugsGiven": {
+      "Total": 0
+    },
+    "HugsReceived": {
+      "Total": 1,
+      "Corrupted#3345": 1
+    }
+  },
+  "371743783940915200": {
+    "User": "Synchos#9798",
+    "BonksReceived": {
+      "Total": 1,
+      "nearlymars#6926": 1
+    }
+  },
+  "361953099729993728": {
+    "User": "Danroleth#8243",
+    "BonksReceived": {
+      "Total": 0
+    }
+  },
+  "136437871744778241": {
+    "User": "Elbeant#8785",
+    "HugsReceived": {
+      "Total": 0
+    }
+  },
+  "344647951701901312": {
+    "User": "uhhhcj#0288",
+    "HugsReceived": {
+      "Total": 0
+    }
+  },
+  "834177044366622741": {
+    "User": "Luna ^w^#5228",
+    "BonksReceived": {
+      "Total": 0
+    }
+  },
+  "469965945683705856": {
+    "User": "jk#8369",
+    "BonksGiven": {
+      "Total": 0
+    }
+  },
+  "671103989718188061": {
+    "User": "Valkyrie Oblige#4471",
+    "BonksReceived": {
+      "Total": 0
     }
   }
 }

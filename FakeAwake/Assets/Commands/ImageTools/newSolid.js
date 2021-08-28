@@ -18,28 +18,32 @@ module.exports = {
             for (var i = 0; i < args.length; i++) { // Check what Flags were specified
                 switch (args[i]) {
                     case '-rgb': // Parse -rgb flag
-                        var R = parseInt(args[i + 1]) || 0,
-                            G = parseInt(args[i + 2]) || 0,
-                            B = parseInt(args[i + 3]) || 0;
+                        {
+                            let R = parseInt(args[i + 1]) || 0,
+                                G = parseInt(args[i + 2]) || 0,
+                                B = parseInt(args[i + 3]) || 0;
 
-                        color = new Chroma(R, G, B, 1); // Normalize values and create color
-                        isColorSpecified = true;
+                            color = new Chroma(R, G, B, 1); // Normalize values and create color
+                            isColorSpecified = true;
+                        }
                         break;
 
                     case '-rgba': // Parse -rgba flag
-                        var R = parseInt(args[i + 1]) || 0,
+                        {
+                            let R = parseInt(args[i + 1]) || 0,
                             G = parseInt(args[i + 2]) || 0,
                             B = parseInt(args[i + 3]) || 0,
                             A = parseInt(args[i + 4]) || 0;
 
-                        color = new Chroma(R, G, B, A / 255); // Create color
-                        isColorSpecified = true;
+                            color = new Chroma(R, G, B, A / 255); // Create color
+                            isColorSpecified = true;
+                        }
                         break;
                     
                     case '-resolution': //Parse -resolution Command
                     case '-res':
                         if (args[i + 1].includes('x')) {
-                            var W = parseInt(args[i + 1].split('x')[0]) || false,
+                            let W = parseInt(args[i + 1].split('x')[0]) || false,
                                 H = parseInt(args[i + 1].split('x')[1]) || false;
 
                             if (!W || !H) {
@@ -49,8 +53,8 @@ module.exports = {
                                 isResolutionSpecified = true
                             }
                         } else {
-                            var W = parseInt(args[i + 1]) || false;
-                            var H = parseInt(args[i + 2]) || false;
+                            let W = parseInt(args[i + 1]) || false,
+                                H = parseInt(args[i + 2]) || false;
 
                             if (!W || !H) {
                                 msg.channel.send('Invalid Resolution');
